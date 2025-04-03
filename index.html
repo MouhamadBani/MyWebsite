@@ -10,10 +10,16 @@
       font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
+      background: linear-gradient(to right, #f9f9f9, #eafaf1);
       color: #333;
     }
-    header, footer {
+    header {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(to right, #006747, #F4B72F);
+      color: white;
+    }
+    footer {
       text-align: center;
       padding: 20px;
       background: #006747;
@@ -22,42 +28,57 @@
     nav {
       text-align: center;
       background: #f4b72f;
-      padding: 10px 0;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     nav a {
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
       color: #000;
       font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      color: #006747;
     }
     .section {
-      padding: 40px 20px;
-      max-width: 900px;
+      padding: 50px 20px;
+      max-width: 1000px;
       margin: auto;
     }
     .project {
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 5px;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 10px;
       background: white;
+      box-shadow: 0 5px 15px rgba(0, 103, 71, 0.1);
+      transition: transform 0.2s;
+    }
+    .project:hover {
+      transform: scale(1.02);
     }
     img {
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: 8px;
+      margin-bottom: 15px;
     }
     h2 {
       color: #006747;
+      text-align: center;
+    }
+    h3 {
+      color: #444;
     }
     .btn {
       display: inline-block;
-      padding: 8px 16px;
+      padding: 10px 20px;
       margin: 5px;
       background: #006747;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 30px;
+      transition: background 0.3s;
     }
     .btn:hover {
       background: #004a34;
@@ -66,10 +87,81 @@
       position: fixed;
       top: 15px;
       right: 15px;
+      padding: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    ul li {
+      margin: 10px 0;
+    }
+  </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    .language-icons {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .language-icons img {
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 4px;
+    }
+    .language-icons img:hover {
+      border-color: #006747;
+    }
+    aside {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      width: 200px;
+      background: #f4b72f;
+      padding: 15px;
+      height: 100%;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+    aside ul li {
+      margin: 15px 0;
+    }
+    aside ul li a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    aside ul li a:hover {
+      color: #006747;
+    }
+    main {
+      margin-left: 220px;
     }
   </style>
 </head>
 <body>
+  <div class="language-icons">
+    <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="setLanguage('en')">
+    <img src="https://flagcdn.com/w40/fr.png" alt="Français" onclick="setLanguage('fr')">
+    <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" onclick="setLanguage('de')">
+  </div>
+
+  <aside>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </aside>
+
+  <main data-aos="fade-up">
   <select onchange="setLanguage(this.value)">
     <option value="en">English</option>
     <option value="fr">Français</option>
@@ -174,6 +266,12 @@
 
   <footer>
     <p>&copy; 2024 Mouhamad Modibo Bani</p>
+  <footer>
+    <p>&copy; 2024 Mouhamad Modibo Bani</p>
+    <p>
+      <a href="mailto:mouhamadbani28@gmail.com" style="color: white;">Email</a> |
+      <a href="https://github.com/MouhamadBani" target="_blank" style="color: white;">GitHub</a>
+    </p>
   </footer>
 
   <script>
@@ -183,6 +281,10 @@
       });
     }
     document.addEventListener("DOMContentLoaded", () => setLanguage('en'));
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
   </script>
 </body>
 </html>
