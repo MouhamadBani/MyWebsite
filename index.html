@@ -35,11 +35,14 @@
       justify-content: center;
       text-align: center;
       color: #ffffff;
+      position: relative;
+      overflow: hidden;
       padding: 0 20px;
     }
     .hero-banner h1 {
       font-size: 3.5rem;
       font-weight: 700;
+      color: #ffffff;
       text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
       animation: glow 2s ease-in-out infinite alternate;
     }
@@ -95,24 +98,6 @@
       text-align: center;
       padding: 20px 0;
     }
-    #skills .rounded:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-    }
-    .badge {
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-    .badge:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-      filter: brightness(1.2);
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
   </style>
 </head>
 <body>
@@ -143,18 +128,18 @@
     </div>
   </section>
 
-  <section id="about" class="container mt-5 p-5 rounded" style="background: linear-gradient(135deg, #1c1c1c, #2b2b2b); color: #ffffff;">
+  <section id="about" class="container mt-5" style="background: linear-gradient(135deg, #006747, #F4B72F); border-radius: 10px; padding: 30px;">
     <div class="row align-items-center">
-      <div class="col-md-4 text-center mb-4 mb-md-0">
-        <img src="images/about/MyphotoProfile.JPG" alt="Profile Picture" class="profile-img shadow">
+      <div class="col-md-4 text-center">
+        <img src="images/about/MyphotoProfile.JPG" alt="Profile Picture" class="profile-img">
       </div>
       <div class="col-md-8">
-        <h2 class="mb-3" style="color: #F4B72F;">About Me</h2>
-        <p>I'm a data-driven professional passionate about using analytics to drive meaningful outcomes. With a background in <strong>Statistics, Data Science</strong> and <strong>Business Intelligence</strong>, I blend technical proficiency with strategic insight. Currently pursuing an MBA with a concentration in <strong>Information Systems Management</strong>, I work with tools like <strong>R, Python, SQL, SAS, SAP</strong>, and leading BI platforms. My mission? To turn complex data into clear, actionable insights.</p>
-        <h2 class="mt-4 mb-2" style="color: #F4B72F;">À propos de moi</h2>
-        <p>Je suis un professionnel orienté données, passionné par l’analyse et la résolution de problèmes. Ma formation en <strong>statistiques, science des données</strong> et <strong>intelligence d'affaires</strong> me permet d’extraire des insights pertinents à partir de données complexes. Actuellement étudiant en MBA avec une concentration en <strong>gestion des systèmes d'information</strong>, j’utilise R, Python, SQL, SAS, SAP et des outils BI pour fournir des solutions stratégiques basées sur les données.</p>
-        <h2 class="mt-4 mb-2" style="color: #F4B72F;">Über mich</h2>
-        <p>Ich bin ein datenorientierter Fachmann mit Leidenschaft für Analytik und Entscheidungsunterstützung. Mit einem Hintergrund in <strong>Statistik, Data Science</strong> und <strong>Business Intelligence</strong> sowie einem laufenden MBA mit dem Schwerpunkt <strong>Informationssysteme</strong>, arbeite ich mit Tools wie R, Python, SQL, SAS, SAP und BI-Plattformen, um aus Daten aussagekräftige und handlungsorientierte Erkenntnisse zu gewinnen.</p>
+        <h2>About Me</h2>
+        <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms.</p>
+        <h2 class="mt-4">À propos de moi</h2>
+        <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Actuellement en train de poursuivre un MBA avec une concentration en gestion des systèmes d'information...</p>
+        <h2 class="mt-4">Über mich</h2>
+        <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence...</p>
       </div>
     </div>
   </section>
@@ -162,7 +147,72 @@
   <div class="container mt-5" id="projects">
     <h2 class="text-center mb-4">Projects</h2>
     <div class="row">
-      <!-- Project cards were already added previously -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
+            <p>This Python + TensorFlow + Streamlit dashboard uses World Bank API data for predictive economic and healthcare analysis.</p>
+            <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
+            <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">African Economy Insights Dashboard</h5>
+            <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
+            <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
+            <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
+            <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
+          <div class="card-body text-center">
+            <h5 class="card-title">Employment & Workforce Analysis</h5>
+            <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
+            <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
+          <div class="card-body text-center">
+            <h5 class="card-title">Africa's Digital Payments Growth</h5>
+            <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
+            <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
+          <div class="card-body text-center">
+            <h5 class="card-title">Bank Operations Management DB</h5>
+            <p>SQL database schema for structured financial tracking and operations monitoring.</p>
+            <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
+            <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -170,29 +220,29 @@
     <h2 class="text-center mb-4">Skills</h2>
     <div class="row text-center">
       <div class="col-md-3 mb-4">
-        <div class="p-4 rounded shadow-lg h-100 text-white" style="background: linear-gradient(135deg, #00c6ff, #0072ff);">
-          <i class="fas fa-database fa-2x mb-3"></i>
+        <div class="p-3 rounded shadow-sm bg-dark text-white h-100">
+          <i class="fas fa-database fa-2x mb-2"></i>
           <h5>Data & Database</h5>
           <p>SQL, MySQL, R, Python, SAS</p>
         </div>
       </div>
       <div class="col-md-3 mb-4">
-        <div class="p-4 rounded shadow-lg h-100 text-white" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
-          <i class="fas fa-chart-line fa-2x mb-3"></i>
+        <div class="p-3 rounded shadow-sm bg-dark text-white h-100">
+          <i class="fas fa-chart-line fa-2x mb-2"></i>
           <h5>BI & Visualization</h5>
           <p>Power BI, Tableau, Streamlit, R Shiny</p>
         </div>
       </div>
       <div class="col-md-3 mb-4">
-        <div class="p-4 rounded shadow-lg h-100 text-white" style="background: linear-gradient(135deg, #f7971e, #ffd200);">
-          <i class="fas fa-laptop-code fa-2x mb-3"></i>
+        <div class="p-3 rounded shadow-sm bg-dark text-white h-100">
+          <i class="fas fa-laptop-code fa-2x mb-2"></i>
           <h5>Programming</h5>
           <p>Python, R, HTML, CSS, C++</p>
         </div>
       </div>
       <div class="col-md-3 mb-4">
-        <div class="p-4 rounded shadow-lg h-100 text-white" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
-          <i class="fas fa-tools fa-2x mb-3"></i>
+        <div class="p-3 rounded shadow-sm bg-dark text-white h-100">
+          <i class="fas fa-project-diagram fa-2x mb-2"></i>
           <h5>Tools & Platforms</h5>
           <p>GitHub, SAP, Excel, VS Code</p>
         </div>
