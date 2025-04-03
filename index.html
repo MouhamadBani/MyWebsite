@@ -25,12 +25,26 @@
         .nav-link:hover {
             color: #F4B72F !important;
         }
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero {
+            background: url('images/banner/banner.jpg') no-repeat center center/cover;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            margin: 20px;
+            padding: 100px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .left-section, .right-section {
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
         .left-section {
             background: linear-gradient(135deg, #006747, #F4B72F);
             color: white;
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         .profile-img {
             width: 140px;
@@ -49,11 +63,18 @@
         .btn-primary:hover {
             background-color: #004a34;
         }
-        .right-section {
-            padding: 40px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .card-img-top {
+            max-height: 180px;
+            object-fit: cover;
         }
         .footer {
             background: linear-gradient(135deg, #006747, #F4B72F);
@@ -61,12 +82,20 @@
             text-align: center;
             padding: 20px 0;
         }
+        @media (max-width: 767px) {
+            .left-section, .right-section {
+                padding: 20px;
+            }
+            .card-body p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">Welcome to Mouhamad Modibo Bani's Portfolio </a>
+            <a class="navbar-brand" href="#">Welcome to Mouhamad Modibo Bani's Portfolio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -81,132 +110,115 @@
         </div>
     </nav>
 
+    <section class="hero text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Hi, I'm Modibo Bani</h1>
+            <p class="lead">Data-Driven Strategist | Economist | BI Enthusiast</p>
+            <a href="#projects" class="btn btn-lg btn-primary mt-3">Explore My Work</a>
+        </div>
+    </section>
+
     <div class="container mt-5" id="about">
         <div class="row">
             <div class="col-md-5 left-section text-center">
                 <img src="images/about/MyphotoProfile.JPG" alt="Profile Picture" class="profile-img">
                 <h1>About Me</h1>
-                <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. 
-                    Currently pursuing an MBA with a concentration in Information Systems Management, 
-                    I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. 
-                    With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, 
-                    optimize processes, and contribute to meaningful solutions. </p>
-
+                <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, optimize processes, and contribute to meaningful solutions.</p>
                 <h1>À propos de moi</h1>
-                <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, 
-                        data science et business intelligence. Actuellement en train de poursuivre un MBA 
-                        avec une concentration en gestion des systèmes d'information, 
-                        je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils 
-                        comme R, Python, SQL, SAS, SAP et les plateformes de BI. Passionné par l'exploitation des données 
-                        pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des insights,
-                        d'optimiser les processus et de contribuer à des solutions significatives. </p>
-
-                        <h1>Über mich</h1>
-                        <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, 
-                            Data Science und Business Intelligence. Derzeit absolviere ich einen MBA mit einer 
-                            Doppelkonzentration in Informationssystemmanagement. 
-                            Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools 
-                            wie R, Python, SQL, SAS, SAP und BI-Plattformen. Mit einer Leidenschaft für die Nutzung von Daten 
-                            zur Unterstützung strategischer Entscheidungen arbeite ich gerne an Projekten,
-                             die Erkenntnisse gewinnen, Prozesse optimieren und sinnvolle Lösungen beitragen. </p>        
-                
+                <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Actuellement en train de poursuivre un MBA avec une concentration en gestion des systèmes d'information, je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de BI. Passionné par l'exploitation des données pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des insights, d'optimiser les processus et de contribuer à des solutions significatives.</p>
+                <h1>Über mich</h1>
+                <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. Derzeit absolviere ich einen MBA mit einer Doppelkonzentration in Informationssystemmanagement. Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und BI-Plattformen. Mit einer Leidenschaft für die Nutzung von Daten zur Unterstützung strategischer Entscheidungen arbeite ich gerne an Projekten, die Erkenntnisse gewinnen, Prozesse optimieren und sinnvolle Lösungen beitragen.</p>
                 <a href="#contact" class="btn btn-primary">Contact Me</a>
             </div>
             <div class="col-md-7 right-section" id="projects">
                 <h2 class="text-center">Projects</h2>
                 <div class="row">
-
-
-                 <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Project 3">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights">
                             <div class="card-body text-center">
                                 <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
-                                <p>This is a platform using Python, TensorFlow, and Streamlit to analyze World Bank data from its API, 
-                                    applying machine learning for insights and predictive forecasting in economic and healthcare trends.</p>
+                                <p>This Python + Streamlit + TensorFlow dashboard accesses World Bank API data and uses ML for economic and healthcare forecasting.</p>
                                 <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">Access the Dashboard</a>
                                 <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
+
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights">
                             <div class="card-body text-center">
-                                <h5 class="card-title">African Econmy Insights Dashboard</h5>
-                                <p>This is an interactive Shiny dashboard done with R providing key economic insights of African countries 
-                                    </p>
+                                <h5 class="card-title">African Economy Insights Dashboard</h5>
+                                <p>Interactive R Shiny dashboard presenting core economic trends of African countries.</p>
                                 <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">Access the Dashboard</a>
                                 <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
+
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Dashboard">
                             <div class="card-body text-center">
                                 <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
-                                <p>This is an interactive dashboard for analyzing and forecasting GDP, Population and access to electricity trends across African Regional
-                                    Economic Communities </p>
+                                <p>Visual and forecast analysis of GDP, population, and energy access across African RECs using R Shiny.</p>
                                 <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">Access the Dashboard</a>
                                 <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Project 4">
+
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce">
                             <div class="card-body text-center">
                                 <h5 class="card-title">Employment & Workforce Analysis</h5>
-                                <p>This interactive dashboard provides employment insights across various countries and 
-                                    continents. It allows users to analyze key workforce metrics.
-                                </p>
+                                <p>Streamlit dashboard exploring global employment and labor trends with Python.</p>
                                 <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">Access the Dashboard</a>
                                 <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
 
-                          <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Project 5">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Digital Payments in Africa">
                             <div class="card-body text-center">
-                                <h5 class="card-title"> Africa's Digital Payments Rate Growth</h5>
-                                <p>This interactive dashboard displaying Afric'as Map of Digital Payments access with visual representation 
-                                    by country and predictions.
-                                </p>
+                                <h5 class="card-title">Africa's Digital Payments Rate Growth</h5>
+                                <p>Interactive dashboard mapping digital payments adoption by African country with growth forecasting.</p>
                                 <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">Access the Dashboard</a>
                                 <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
                             <div class="card-body text-center">
                                 <h5 class="card-title">Bank Operations Management Database Design</h5>
-                                <p>This is a relational database schema for managing a bank’s operational data efficiently, 
-                                    ensuring structured financial tracking, risk management, and project monitoring.</p>
+                                <p>Relational schema using MySQL for operational tracking, finance, and risk management.</p>
                                 <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">Access the Design</a>
                                 <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source Code</a>
                             </div>
                         </div>
                     </div>
-                    
-                   
                 </div>
-                <h2 class="text-center mt-5" id="skills">Skills</h2>
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item">Data Science & Statistical Analysis: R, Python, SAS, MySQL</li>
-                    <li class="list-group-item">Business Intelligence & Reporting: SAP, Power BI, Tableau</li>
-                    <li class="list-group-item">Data Visualization & Reporting: R Shiny, Excel / BI tools</li>
-                    <li class="list-group-item">Web Development & Programming: C++, HTML & CSS</li>
 
-                </ul>
+                <div class="text-center mt-5" id="skills">
+                    <h2>Skills</h2>
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                        <span class="badge bg-success p-3 fs-6">Python</span>
+                        <span class="badge bg-primary p-3 fs-6">R</span>
+                        <span class="badge bg-info text-dark p-3 fs-6">SAS</span>
+                        <span class="badge bg-warning text-dark p-3 fs-6">Power BI</span>
+                        <span class="badge bg-dark p-3 fs-6">MySQL</span>
+                        <span class="badge bg-secondary p-3 fs-6">Tableau</span>
+                        <span class="badge bg-danger p-3 fs-6">SAP</span>
+                        <span class="badge bg-primary p-3 fs-6">HTML & CSS</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -218,4 +230,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>   make a nice interface design for my portfolio 
+</html>
