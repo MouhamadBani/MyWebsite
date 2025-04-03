@@ -1,4 +1,3 @@
-<!-- FULL CODE STARTS HERE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,23 +98,32 @@
       text-align: center;
       padding: 20px 0;
     }
-
-    /* Green skills box */
     .skill-box {
       background: linear-gradient(135deg, #228B22, #006747);
       color: #ffffff;
     }
-
-    /* Golden section headers */
     .section-title {
       background: linear-gradient(145deg, #F4B72F, #FFD700);
       color: #000;
       padding: 10px 20px;
       border-radius: 10px;
-      display: inline-block;
       font-weight: 700;
       margin-bottom: 30px;
       text-shadow: 1px 1px 3px #333;
+      display: inline-block;
+    }
+    .section-header-wrapper {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 30px;
+    }
+    hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, #006747, #F4B72F, #006747);
+      margin: 60px auto;
+      width: 80%;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -155,90 +163,127 @@
       <div class="col-md-8">
         <h2>About Me</h2>
         <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. 
-        Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, 
-        data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms...</p>
+                    Currently pursuing an MBA with a concentration in Information Systems Management, 
+                    I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. 
+                    With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, 
+                    optimize processes, and contribute to meaningful solutions.</p>
         <h2 class="mt-4">À propos de moi</h2>
-        <p>Je suis un professionnel axé sur les données...</p>
+        <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, 
+                        data science et business intelligence. Actuellement en train de poursuivre un MBA 
+                        avec une concentration en gestion des systèmes d'information, 
+                        je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils 
+                        comme R, Python, SQL, SAS, SAP et les plateformes de BI. Passionné par l'exploitation des données 
+                        pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des insights,
+                        d'optimiser les processus et de contribuer à des solutions significatives.</p>
         <h2 class="mt-4">Über mich</h2>
-        <p>Ich bin ein datengetriebener Fachmann...</p>
+        <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, 
+                            Data Science und Business Intelligence. Derzeit absolviere ich einen MBA mit einer 
+                            Doppelkonzentration in Informationssystemmanagement. 
+                            Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools 
+                            wie R, Python, SQL, SAS, SAP und BI-Plattformen. Mit einer Leidenschaft für die Nutzung von Daten 
+                            zur Unterstützung strategischer Entscheidungen arbeite ich gerne an Projekten,
+                             die Erkenntnisse gewinnen, Prozesse optimieren und sinnvolle Lösungen beitragen.</p>
       </div>
     </div>
   </section>
 
-  <div class="container mt-5" id="projects">
+  <hr>
+  <div class="section-header-wrapper" id="projects">
     <h2 class="section-title">Projects</h2>
+  </div>
+
+  <div class="container">
     <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
-            <p>This Python + TensorFlow + Streamlit dashboard uses World Bank API data for predictive economic and healthcare analysis.</p>
-            <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
-            <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
-          </div>
+     <hr>
+<div class="section-header-wrapper" id="projects">
+  <h2 class="section-title">Projects</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
+        <div class="card-body text-center">
+          <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
+          <p>This Python + TensorFlow + Streamlit dashboard uses World Bank API data for predictive economic and healthcare analysis.</p>
+          <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
+          <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">African Economy Insights Dashboard</h5>
-            <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
-            <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
-          </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
+        <div class="card-body text-center">
+          <h5 class="card-title">African Economy Insights Dashboard</h5>
+          <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
+          <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
+          <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
-            <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
-            <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
-          </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
+        <div class="card-body text-center">
+          <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
+          <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
+          <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
+          <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
-          <div class="card-body text-center">
-            <h5 class="card-title">Employment & Workforce Analysis</h5>
-            <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
-            <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
-          </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
+        <div class="card-body text-center">
+          <h5 class="card-title">Employment & Workforce Analysis</h5>
+          <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
+          <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
+          <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
-          <div class="card-body text-center">
-            <h5 class="card-title">Africa's Digital Payments Growth</h5>
-            <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
-            <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
-          </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
+        <div class="card-body text-center">
+          <h5 class="card-title">Africa's Digital Payments Growth</h5>
+          <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
+          <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
+          <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
-          <div class="card-body text-center">
-            <h5 class="card-title">Bank Operations Management DB</h5>
-            <p>SQL database schema for structured financial tracking and operations monitoring.</p>
-            <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
-            <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
-          </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
+        <div class="card-body text-center">
+          <h5 class="card-title">Bank Operations Management DB</h5>
+          <p>SQL database schema for structured financial tracking and operations monitoring.</p>
+          <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
+          <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <section id="skills" class="container mt-5">
+    </div>
+  </div>
+
+  <hr>
+  <div class="section-header-wrapper" id="skills">
     <h2 class="section-title">Skills</h2>
+  </div>
+
+  <section class="container">
     <div class="row text-center">
       <div class="col-md-3 mb-4">
         <div class="p-3 rounded shadow-sm skill-box h-100">
@@ -271,7 +316,8 @@
     </div>
   </section>
 
-  <section class="footer mt-5" id="contact">
+  <hr>
+  <section class="footer" id="contact">
     <h2>Contact Me</h2>
     <p>Email: mouhamadbani28@gmail.com | Phone: +1 320 237 1396 | mmbani@okramail.deltastate.edu</p>
   </section>
