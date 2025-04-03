@@ -4,173 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modibo Bani's Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
+    :root {
+      --green: #006747;
+      --gold: #F4B72F;
+      --dark: #1a1a1a;
+      --light: #f9f9f9;
+    }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #f9f9f9, #eafaf1);
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, var(--light), #eafaf1);
+      color: var(--dark);
     }
     header {
-      text-align: center;
-      padding: 30px;
-      background: linear-gradient(to right, #006747, #F4B72F);
+      background: linear-gradient(to right, var(--green), var(--gold));
       color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #006747;
-      color: white;
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      font-weight: 500;
     }
     nav {
-      text-align: center;
-      background: #f4b72f;
-      padding: 15px 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
     nav a {
-      margin: 0 20px;
       text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      font-size: 1.1em;
+      color: var(--dark);
+      font-weight: 600;
     }
     nav a:hover {
-      color: #006747;
+      color: var(--green);
     }
     .section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .project {
-      margin-bottom: 30px;
-      padding: 20px;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 5px 15px rgba(0, 103, 71, 0.1);
-      transition: transform 0.2s;
-    }
-    .project:hover {
-      transform: scale(1.02);
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
     }
     h2 {
-      color: #006747;
       text-align: center;
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 2rem;
     }
-    h3 {
-      color: #444;
+    .project-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .project {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+    }
+    .project img {
+      width: 100%;
+      display: block;
+    }
+    .project-content {
+      padding: 1rem;
+    }
+    .project h3 {
+      margin: 0 0 0.5rem;
+      color: var(--dark);
+    }
+    .project p {
+      font-size: 0.95rem;
     }
     .btn {
       display: inline-block;
-      padding: 10px 20px;
-      margin: 5px;
-      background: #006747;
+      background: var(--green);
       color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
       text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.3s;
+      font-weight: 500;
+      margin-right: 0.5rem;
     }
     .btn:hover {
       background: #004a34;
     }
-    select {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      padding: 6px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+    ul {
+      padding-left: 1.2rem;
     }
-    ul li {
-      margin: 10px 0;
-    }
-  </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <style>
-    .language-icons {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      display: flex;
-      gap: 10px;
-      z-index: 1000;
-    }
-    .language-icons img {
-      width: 28px;
-      height: 20px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      border-radius: 4px;
-    }
-    .language-icons img:hover {
-      border-color: #006747;
-    }
-    aside {
-      position: fixed;
-      top: 100px;
-      left: 0;
-      width: 200px;
-      background: #f4b72f;
-      padding: 15px;
-      height: 100%;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    }
-    aside ul {
-      list-style: none;
-      padding: 0;
-    }
-    aside ul li {
-      margin: 15px 0;
-    }
-    aside ul li a {
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    aside ul li a:hover {
-      color: #006747;
-    }
-    main {
-      margin-left: 220px;
+    footer {
+      text-align: center;
+      background: var(--green);
+      color: white;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
-  <div class="language-icons">
-    <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="setLanguage('en')">
-    <img src="https://flagcdn.com/w40/fr.png" alt="Français" onclick="setLanguage('fr')">
-    <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" onclick="setLanguage('de')">
-  </div>
-
-  <aside>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </aside>
-
-  <main data-aos="fade-up">
-  <select onchange="setLanguage(this.value)">
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-  </select>
-
   <header>
     <h1>Mouhamad Modibo Bani</h1>
-    <p>Data Science | BI | Healthcare Analytics</p>
+    <p>Data Science | Business Intelligence | Healthcare Analytics</p>
   </header>
 
   <nav>
@@ -180,74 +135,77 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <div class="section" id="about">
-    <div lang="en">
-      <h2>About Me</h2>
-      <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms.</p>
-    </div>
-    <div lang="fr" style="display:none">
-      <h2>À propos de moi</h2>
-      <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et BI. Je poursuis actuellement un MBA en gestion des systèmes d'information.</p>
-    </div>
-    <div lang="de" style="display:none">
-      <h2>Über mich</h2>
-      <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und BI. Derzeit studiere ich einen MBA mit Schwerpunkt Informationssystemmanagement.</p>
-    </div>
-  </div>
+  <section class="section" id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms.</p>
+  </section>
 
-  <div class="section" id="projects">
+  <section class="section" id="projects" data-aos="fade-up">
     <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <img src="images/projects/futuristic_dashboard_no_text.jpg" alt="Dashboard">
+        <div class="project-content">
+          <h3>Global Economic & Health Insights Dashboard</h3>
+          <p>Streamlit dashboard using World Bank API and ML for forecasts.</p>
+          <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn" target="_blank">View</a>
+          <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn">Code</a>
+        </div>
+      </div>
 
-    <div class="project">
-      <img src="images/projects/futuristic_dashboard_no_text.jpg" alt="Dashboard">
-      <h3>Global Economic & Health Insights Dashboard</h3>
-      <p>Streamlit dashboard using World Bank API and ML for forecasts.</p>
-      <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn" target="_blank">View</a>
-      <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn">Code</a>
+      <div class="project">
+        <img src="images/projects/1.jpg" alt="African Economy">
+        <div class="project-content">
+          <h3>African Economy Insights Dashboard</h3>
+          <p>R Shiny dashboard showing African countries' economic indicators.</p>
+          <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn">View</a>
+          <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn">Code</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="images/projects/2.jpg" alt="African RECs">
+        <div class="project-content">
+          <h3>African Regional Economic Communities Dashboard</h3>
+          <p>Forecasting GDP, population, and electricity trends across African RECs using R Shiny.</p>
+          <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn">View</a>
+          <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn">Code</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="images/projects/Employment_Workforce_Dashboard.jpg" alt="Employment Dashboard">
+        <div class="project-content">
+          <h3>Employment & Workforce Analysis</h3>
+          <p>Streamlit dashboard providing employment insights across countries and continents.</p>
+          <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn">View</a>
+          <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn">Code</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="images/projects/payments_growth.jpg" alt="Digital Payments">
+        <div class="project-content">
+          <h3>Africa's Digital Payments Rate Growth</h3>
+          <p>Interactive map and predictions of digital payments access across Africa.</p>
+          <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn">View</a>
+          <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn">Code</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="images/projects/3.jpg" alt="Bank DB Design">
+        <div class="project-content">
+          <h3>Bank Operations Management Database Design</h3>
+          <p>MySQL database schema for managing operational data, risk, and reporting.</p>
+          <a href="images/projects/BankOpsMgtDB.png" class="btn" target="_blank">View</a>
+          <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn">Code</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="project">
-      <img src="images/projects/1.jpg" alt="African Economy">
-      <h3>African Economy Insights Dashboard</h3>
-      <p>R Shiny dashboard showing African countries' economic indicators.</p>
-      <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn">View</a>
-      <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="images/projects/2.jpg" alt="African RECs">
-      <h3>African Regional Economic Communities Dashboard</h3>
-      <p>Forecasting GDP, population, and electricity trends across African RECs using R Shiny.</p>
-      <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn">View</a>
-      <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="images/projects/Employment_Workforce_Dashboard.jpg" alt="Employment Dashboard">
-      <h3>Employment & Workforce Analysis</h3>
-      <p>Streamlit dashboard providing employment insights across countries and continents.</p>
-      <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn">View</a>
-      <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="images/projects/payments_growth.jpg" alt="Digital Payments">
-      <h3>Africa's Digital Payments Rate Growth</h3>
-      <p>Interactive map and predictions of digital payments access across Africa.</p>
-      <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn">View</a>
-      <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn">Code</a>
-    </div>
-
-    <div class="project">
-      <img src="images/projects/3.jpg" alt="Bank DB Design">
-      <h3>Bank Operations Management Database Design</h3>
-      <p>MySQL database schema for managing operational data, risk, and reporting.</p>
-      <a href="images/projects/BankOpsMgtDB.png" class="btn" target="_blank">View</a>
-      <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn">Code</a>
-    </div>
-  </div>
-
-  <div class="section" id="skills">
+  <section class="section" id="skills" data-aos="fade-up">
     <h2>Skills</h2>
     <ul>
       <li>R, Python, SQL, SAS</li>
@@ -255,17 +213,15 @@
       <li>R Shiny, Excel</li>
       <li>C++, HTML, CSS</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="section" id="contact">
+  <section class="section" id="contact" data-aos="fade-up">
     <h2>Contact</h2>
-    <p>Email: mouhamadbani28@gmail.com</p>
+    <p>Email: <a href="mailto:mouhamadbani28@gmail.com">mouhamadbani28@gmail.com</a></p>
     <p>Phone: +1 320 237 1396</p>
-    <p>mmbani@okramail.deltastate.edu</p>
-  </div>
+    <p>Alt Email: <a href="mailto:mmbani@okramail.deltastate.edu">mmbani@okramail.deltastate.edu</a></p>
+  </section>
 
-  <footer>
-    <p>&copy; 2024 Mouhamad Modibo Bani</p>
   <footer>
     <p>&copy; 2024 Mouhamad Modibo Bani</p>
     <p>
@@ -274,15 +230,7 @@
     </p>
   </footer>
 
-  <script>
-    function setLanguage(lang) {
-      document.querySelectorAll('[lang]').forEach(el => {
-        el.style.display = el.getAttribute('lang') === lang ? 'block' : 'none';
-      });
-    }
-    document.addEventListener("DOMContentLoaded", () => setLanguage('en'));
-  </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init();
   </script>
