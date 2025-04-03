@@ -1,374 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modibo Bani's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f0f2f5, #e0f7ef);
-            color: #212121;
-        }
-        .navbar {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-        }
-        .navbar-brand, .nav-link {
-            font-weight: 600;
-            color: #212121 !important;
-        }
-        .nav-link:hover {
-            color: #F4B72F !important;
-        }
-        .hero {
-            height: 100vh;
-            background: linear-gradient(to right, rgba(0, 103, 71, 0.8), rgba(244, 183, 47, 0.8)), url('images/about/hero-bg.jpg') center center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .hero p {
-            font-size: 1.25rem;
-            margin-top: 15px;
-        }
-        .btn-primary {
-            background-color: #F4B72F;
-            border: none;
-            border-radius: 30px;
-            padding: 12px 30px;
-            font-weight: 600;
-            transition: 0.3s ease;
-            color: #212121;
-        }
-        .btn-primary:hover {
-            background-color: #ffc107;
-            transform: scale(1.05);
-        }
-        .language-toggle {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1000;
-        }
-        .section-title {
-            text-align: center;
-            font-weight: 700;
-            margin: 60px 0 30px;
-            color: #006747;
-        }
-        .left-section {
-            background: rgba(244, 183, 47, 0.1);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            margin-bottom: 20px;
-        }
-        .card {
-            border: none;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        .footer {
-            background: linear-gradient(135deg, #006747, #F4B72F);
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-        .footer a:hover {
-            color: #212121;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modibo Bani's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header, footer {
+      text-align: center;
+      padding: 20px;
+      background: #006747;
+      color: white;
+    }
+    nav {
+      text-align: center;
+      background: #f4b72f;
+      padding: 10px 0;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .project {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      background: white;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    h2 {
+      color: #006747;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      margin: 5px;
+      background: #006747;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background: #004a34;
+    }
+    select {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+    }
+  </style>
 </head>
 <body>
-    <div class="language-toggle">
-        <select class="form-select" onchange="setLanguage(this.value)">
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-        </select>
-    </div>
+  <select onchange="setLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+  </select>
 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">Welcome to Mouhamad Modibo Bani's Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
+  <header>
     <h1>Mouhamad Modibo Bani</h1>
-    <p>Data Science | Business Intelligence | Healthcare Analytics</p>
-    <a href="#projects" class="btn btn-primary mt-4">View My Work</a>
-</section>
+    <p>Data Science | BI | Healthcare Analytics</p>
+  </header>
 
-<div class="container mt-5" id="about">
-    <div class="row">
-        <div class="col-md-5 left-section text-center">
-            <img src="images/about/MyphotoProfile.JPG" alt="Profile Picture" class="profile-img">
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-            <div lang="en">
-                <h2>About Me</h2>
-                <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. 
-                Currently pursuing an MBA with a concentration in Information Systems Management, 
-                I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. 
-                With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, 
-                optimize processes, and contribute to meaningful solutions.</p>
-            </div>
-
-            <div lang="fr" style="display: none;">
-                <h2>À propos de moi</h2>
-                <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. 
-                Actuellement en train de poursuivre un MBA avec une concentration en gestion des systèmes d'information, 
-                je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de BI. 
-                Passionné par l'exploitation des données pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des insights, 
-                d'optimiser les processus et de contribuer à des solutions significatives.</p>
-            </div>
-
-            <div lang="de" style="display: none;">
-                <h2>Über mich</h2>
-                <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. 
-                Derzeit absolviere ich einen MBA mit einer Doppelkonzentration in Informationssystemmanagement. 
-                Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und BI-Plattformen. 
-                Mit einer Leidenschaft für die Nutzung von Daten zur Unterstützung strategischer Entscheidungen arbeite ich gerne an Projekten, 
-                die Erkenntnisse gewinnen, Prozesse optimieren und sinnvolle Lösungen beitragen.</p>
-            </div>
-
-            <a href="#contact" class="btn btn-primary">Contact Me</a>
-        </div>
-        <div class="col-md-7">
-
-
-    <div class="container mt-5" id="projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="row g-4">
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
+  <div class="section" id="about">
     <div lang="en">
-        <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
-        <p>This platform uses Python, TensorFlow, and Streamlit to analyze World Bank API data.</p>
+      <h2>About Me</h2>
+      <p>I am a data-driven professional with a background in statistics, data science, and business intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms.</p>
     </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Tableau de bord mondial sur l'économie et la santé</h5>
-        <p>Cette plateforme utilise Python, TensorFlow et Streamlit pour analyser les données de la Banque mondiale.</p>
+    <div lang="fr" style="display:none">
+      <h2>À propos de moi</h2>
+      <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et BI. Je poursuis actuellement un MBA en gestion des systèmes d'information.</p>
     </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Globales Dashboard für Wirtschaft & Gesundheit</h5>
-        <p>Diese Plattform verwendet Python, TensorFlow und Streamlit zur Analyse von Weltbankdaten.</p>
+    <div lang="de" style="display:none">
+      <h2>Über mich</h2>
+      <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und BI. Derzeit studiere ich einen MBA mit Schwerpunkt Informationssystemmanagement.</p>
     </div>
-    <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary mb-2" target="_blank">Access the Dashboard</a>
-    <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source Code</a>
-</div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/1.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
-    <div lang="en">
-        <h5 class="card-title">African Economy Insights Dashboard</h5>
-        <p>Interactive R Shiny dashboard for key African economic indicators.</p>
-    </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Tableau de bord sur l'économie africaine</h5>
-        <p>Tableau interactif R Shiny affichant les indicateurs économiques clés des pays africains.</p>
-    </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Dashboard zu Afrikas Wirtschaft</h5>
-        <p>Interaktives R Shiny-Dashboard mit zentralen Wirtschaftskennzahlen afrikanischer Länder.</p>
-    </div>
-    <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary mb-2">Access the Dashboard</a>
-                    <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/2.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
-    <div lang="en">
-        <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
-        <p>Forecasts GDP, Population, and Electricity access across RECs in Africa.</p>
-    </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Tableau de bord des communautés économiques régionales africaines</h5>
-        <p>Prévisions sur le PIB, la population et l'accès à l'électricité dans les CER en Afrique.</p>
-    </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Dashboard zu regionalen Wirtschaftsgemeinschaften Afrikas</h5>
-        <p>Prognosen für BIP, Bevölkerung und Stromzugang in afrikanischen RECs.</p>
-    </div>
-    <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary mb-2">Access the Dashboard</a>
-                    <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
-    <div lang="en">
-        <h5 class="card-title">Employment & Workforce Analysis</h5>
-        <p>Streamlit dashboard showing workforce metrics by region.</p>
-    </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Analyse de l'emploi et de la main-d'œuvre</h5>
-        <p>Tableau Streamlit affichant les métriques du marché du travail par région.</p>
-    </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Analyse von Beschäftigung & Arbeitskräften</h5>
-        <p>Streamlit-Dashboard zur Darstellung von Arbeitsmarktdaten nach Region.</p>
-    </div>
-    <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary mb-2">Access the Dashboard</a>
-                    <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
-    <div lang="en">
-        <h5 class="card-title">Africa's Digital Payments Rate Growth</h5>
-        <p>Visualizes digital payments access across Africa with forecasting.</p>
-    </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Croissance des paiements numériques en Afrique</h5>
-        <p>Visualisation de l'accès aux paiements numériques en Afrique avec prévisions.</p>
-    </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Wachstum der digitalen Zahlungen in Afrika</h5>
-        <p>Visualisiert den Zugang zu digitalen Zahlungen mit Prognosen in Afrika.</p>
-    </div>
-    <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary mb-2">Access the Dashboard</a>
-                    <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card h-100">
-                <img src="images/projects/3.jpg" class="card-img-top" alt="Project Image">
-                <div class="card-body text-center">
-    <div lang="en">
-        <h5 class="card-title">Bank Operations Management Database Design</h5>
-        <p>MySQL schema to manage operational data, risk, and reporting.</p>
-    </div>
-    <div lang="fr" style="display: none;">
-        <h5 class="card-title">Conception de base de données pour la gestion bancaire</h5>
-        <p>Schéma MySQL pour gérer les données opérationnelles, les risques et les rapports.</p>
-    </div>
-    <div lang="de" style="display: none;">
-        <h5 class="card-title">Datenbankentwurf für Bankbetriebsmanagement</h5>
-        <p>MySQL-Schema zur Verwaltung von Betriebsdaten, Risiken und Berichten.</p>
-    </div>
-    <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary mb-2" target="_blank">Access the Design</a>
-                    <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-        <h2 class="section-title mt-5" id="skills">Skills</h2>
-<div lang="en">
-<ul class="list-group list-group-flush text-center">
-    <li class="list-group-item">Data Science & Statistical Analysis: R, Python, SAS, MySQL</li>
-    <li class="list-group-item">Business Intelligence & Reporting: SAP, Power BI, Tableau</li>
-    <li class="list-group-item">Data Visualization & Reporting: R Shiny, Excel / BI tools</li>
-    <li class="list-group-item">Web Development & Programming: C++, HTML & CSS</li>
-</ul>
-</div>
-<div lang="fr" style="display:none;">
-<ul class="list-group list-group-flush text-center">
-    <li class="list-group-item">Science des données & Analyse statistique : R, Python, SAS, MySQL</li>
-    <li class="list-group-item">Intelligence d'affaires & Reporting : SAP, Power BI, Tableau</li>
-    <li class="list-group-item">Visualisation de données : R Shiny, Excel / outils BI</li>
-    <li class="list-group-item">Développement web & Programmation : C++, HTML & CSS</li>
-</ul>
-</div>
-<div lang="de" style="display:none;">
-<ul class="list-group list-group-flush text-center">
-    <li class="list-group-item">Datenwissenschaft & Statistik: R, Python, SAS, MySQL</li>
-    <li class="list-group-item">Business Intelligence & Reporting: SAP, Power BI, Tableau</li>
-    <li class="list-group-item">Datenvisualisierung: R Shiny, Excel / BI-Tools</li>
-    <li class="list-group-item">Webentwicklung & Programmierung: C++, HTML & CSS</li>
-</ul>
-</div>
-
-<section class="footer mt-5" id="contact">
-  <div lang="en">
-    <h2>Contact Me</h2>
-    <p>Email: mouhamadbani28@gmail.com | Phone: +1 320 237 1396 | mmbani@okramail.deltastate.edu</p>
   </div>
-  <div lang="fr" style="display: none;">
-    <h2>Contactez-moi</h2>
-    <p>Email : mouhamadbani28@gmail.com | Téléphone : +1 320 237 1396 | mmbani@okramail.deltastate.edu</p>
-  </div>
-  <div lang="de" style="display: none;">
-    <h2>Kontaktieren Sie mich</h2>
-    <p>Email: mouhamadbani28@gmail.com | Telefon: +1 320 237 1396 | mmbani@okramail.deltastate.edu</p>
-  </div>
-  <div class="mt-3">
-    <a href="https://github.com/MouhamadBani" class="text-white me-3"><i class="fab fa-github fa-lg"></i></a>
-    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-  </div>
-</section>
-</div>
 
+  <div class="section" id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <img src="images/projects/futuristic_dashboard_no_text.jpg" alt="Dashboard">
+      <h3>Global Economic & Health Insights Dashboard</h3>
+      <p>Streamlit dashboard using World Bank API and ML for forecasts.</p>
+      <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn" target="_blank">View</a>
+      <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn">Code</a>
     </div>
-</div>
 
-    <script>
-        function setLanguage(lang) {
-            document.querySelectorAll('[lang]').forEach(el => {
-                el.style.display = el.getAttribute('lang') === lang ? 'block' : 'none';
-            });
-        }
-        document.addEventListener("DOMContentLoaded", () => setLanguage('en'));
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="project">
+      <img src="images/projects/1.jpg" alt="African Economy">
+      <h3>African Economy Insights Dashboard</h3>
+      <p>R Shiny dashboard showing African countries' economic indicators.</p>
+      <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn">View</a>
+      <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn">Code</a>
+    </div>
+
+    <div class="project">
+      <img src="images/projects/2.jpg" alt="African RECs">
+      <h3>African Regional Economic Communities Dashboard</h3>
+      <p>Forecasting GDP, population, and electricity trends across African RECs using R Shiny.</p>
+      <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn">View</a>
+      <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn">Code</a>
+    </div>
+
+    <div class="project">
+      <img src="images/projects/Employment_Workforce_Dashboard.jpg" alt="Employment Dashboard">
+      <h3>Employment & Workforce Analysis</h3>
+      <p>Streamlit dashboard providing employment insights across countries and continents.</p>
+      <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn">View</a>
+      <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn">Code</a>
+    </div>
+
+    <div class="project">
+      <img src="images/projects/payments_growth.jpg" alt="Digital Payments">
+      <h3>Africa's Digital Payments Rate Growth</h3>
+      <p>Interactive map and predictions of digital payments access across Africa.</p>
+      <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn">View</a>
+      <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn">Code</a>
+    </div>
+
+    <div class="project">
+      <img src="images/projects/3.jpg" alt="Bank DB Design">
+      <h3>Bank Operations Management Database Design</h3>
+      <p>MySQL database schema for managing operational data, risk, and reporting.</p>
+      <a href="images/projects/BankOpsMgtDB.png" class="btn" target="_blank">View</a>
+      <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn">Code</a>
+    </div>
+  </div>
+
+  <div class="section" id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>R, Python, SQL, SAS</li>
+      <li>Power BI, Tableau, SAP</li>
+      <li>R Shiny, Excel</li>
+      <li>C++, HTML, CSS</li>
+    </ul>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Email: mouhamadbani28@gmail.com</p>
+    <p>Phone: +1 320 237 1396</p>
+    <p>mmbani@okramail.deltastate.edu</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Mouhamad Modibo Bani</p>
+  </footer>
+
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[lang]').forEach(el => {
+        el.style.display = el.getAttribute('lang') === lang ? 'block' : 'none';
+      });
+    }
+    document.addEventListener("DOMContentLoaded", () => setLanguage('en'));
+  </script>
 </body>
 </html>
