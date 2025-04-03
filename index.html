@@ -13,11 +13,11 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f0f2f5;
+            background: linear-gradient(135deg, #f0f2f5, #e0f7ef);
             color: #212121;
         }
         .navbar {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
         }
@@ -26,7 +26,7 @@
             color: #212121 !important;
         }
         .nav-link:hover {
-            color: #006747 !important;
+            color: #F4B72F !important;
         }
         .hero {
             height: 100vh;
@@ -41,30 +41,39 @@
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         .hero p {
             font-size: 1.25rem;
             margin-top: 15px;
         }
         .btn-primary {
-            background-color: #006747;
+            background-color: #F4B72F;
             border: none;
             border-radius: 30px;
             padding: 12px 30px;
             font-weight: 600;
             transition: 0.3s ease;
+            color: #212121;
         }
         .btn-primary:hover {
-            background-color: #004a34;
+            background-color: #ffc107;
             transform: scale(1.05);
+        }
+        .language-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
         }
         .section-title {
             text-align: center;
             font-weight: 700;
             margin: 60px 0 30px;
+            color: #006747;
         }
         .left-section {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(244, 183, 47, 0.1);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 40px;
@@ -81,8 +90,7 @@
         .card {
             border: none;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -91,16 +99,34 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         .footer {
-            background: linear-gradient(135deg, #0c1c17, #0a4a3b);
-            color: #f0f0f0;
+            background: linear-gradient(135deg, #006747, #F4B72F);
+            color: white;
             padding: 50px 0;
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
             text-align: center;
         }
         .footer a:hover {
-            color: #F4B72F;
+            color: #212121;
         }
     </style>
+</head>
+<body>
+<div class="language-toggle">
+    <select class="form-select" onchange="setLanguage(this.value)">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+    </select>
+</div>
+<script>
+    function setLanguage(lang) {
+        document.querySelectorAll('[lang]').forEach(el => {
+            el.style.display = el.getAttribute('lang') === lang ? 'block' : 'none';
+        });
+    }
+    document.addEventListener("DOMContentLoaded", () => setLanguage('en'));
+</script>
+
+    
 </head>
 <body>
 </head>
