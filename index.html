@@ -443,15 +443,37 @@
     }
     .skill-card:hover { border-color: rgba(201,151,43,0.4); transform: translateY(-4px); }
     .skill-card:hover::before { transform: scaleX(1); }
-    .skill-icon {
-      width: 42px; height: 42px;
-      background: rgba(10,92,58,0.2);
-      border: 1px solid rgba(10,92,58,0.4);
-      border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
+    .skill-logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 20px;
-      color: var(--green-bright);
-      font-size: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .skill-logo-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: brightness(0.9);
+      transition: transform 0.2s, filter 0.2s;
+    }
+    .skill-logo-img:hover {
+      transform: scale(1.15);
+      filter: brightness(1.2);
+    }
+    .skill-logo-text-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(201,151,43,0.15);
+      border: 1px solid rgba(201,151,43,0.3);
+      border-radius: 4px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--gold-light);
     }
     .skill-title {
       font-family: 'Cormorant Garamond', serif;
@@ -607,13 +629,13 @@
           <h2 class="section-heading">Data-driven <em>professional</em><br>& analytical thinker</h2>
           <div class="thin-rule"></div>
 
-          <span class="lang-tab">🇬🇧 English</span>
+          <span class="lang-tab">English</span>
           <p class="about-text">I am a data-driven professional with a background in statistics, data science, and Business Intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, optimize processes, and contribute to meaningful solutions.</p>
 
-          <span class="lang-tab">🇫🇷 Français</span>
+          <span class="lang-tab">Français</span>
           <p class="about-text">Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de Business Intelligence.</p>
 
-          <span class="lang-tab">🇩🇪 Deutsch</span>
+          <span class="lang-tab">Deutsch</span>
           <p class="about-text">Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und Business Intelligence Plattformen.</p>
         </div>
       </div>
@@ -771,7 +793,6 @@
 
         <div class="col-md-3 col-sm-6 reveal reveal-delay-1">
           <div class="skill-card">
-            <div class="skill-icon">⚗</div>
             <h4 class="skill-title">Data Science & Statistical Analysis</h4>
             <div class="skill-tools">
               <span class="skill-tool">Python</span>
@@ -784,7 +805,6 @@
 
         <div class="col-md-3 col-sm-6 reveal reveal-delay-2">
           <div class="skill-card">
-            <div class="skill-icon">📊</div>
             <h4 class="skill-title">Business Intelligence & Reporting</h4>
             <div class="skill-tools">
               <span class="skill-tool">SAP</span>
@@ -797,7 +817,6 @@
 
         <div class="col-md-3 col-sm-6 reveal reveal-delay-3">
           <div class="skill-card">
-            <div class="skill-icon">🖥</div>
             <h4 class="skill-title">Data Visualization & Web Apps</h4>
             <div class="skill-tools">
               <span class="skill-tool">Streamlit</span>
@@ -810,7 +829,6 @@
 
         <div class="col-md-3 col-sm-6 reveal reveal-delay-4">
           <div class="skill-card">
-            <div class="skill-icon">⌨</div>
             <h4 class="skill-title">Web Development & Programming</h4>
             <div class="skill-tools">
               <span class="skill-tool">C++</span>
@@ -848,15 +866,11 @@
             <div class="contact-icon">✉</div>
             <span class="contact-value">mmbani@okramail.deltastate.edu</span>
           </div>
-          <div class="contact-line">
-            <div class="contact-icon">☎</div>
-            <span class="contact-value">+1 320 237 1396</span>
-          </div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        © 2025 <span>Mouhamad Modibo Bani</span>. Crafted with precision.
+        © 2025 <span>Mouhamad Modibo Bani</span>
       </div>
     </div>
   </section>
