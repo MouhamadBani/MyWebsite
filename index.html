@@ -295,16 +295,42 @@
       line-height: 1.8;
       margin-bottom: 16px;
     }
-    .lang-tab {
-      display: inline-block;
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
+    .lang-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
+      padding: 7px 18px;
       border-radius: 2px;
-      color: var(--gold);
-      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .lang-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0C0E0D;
+      font-weight: 600;
+    }
+    .lang-content {
+      animation: fadeIn 0.35s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── PROJECTS ─── */
@@ -629,14 +655,25 @@
           <h2 class="section-heading">Data-driven <em>professional</em><br>& analytical thinker</h2>
           <div class="thin-rule"></div>
 
-          <span class="lang-tab">English</span>
-          <p class="about-text">I am a data-driven professional with a background in statistics, data science, and Business Intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, optimize processes, and contribute to meaningful solutions.</p>
+          <div class="lang-selector">
+            <button class="lang-btn active" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="fr">Français</button>
+            <button class="lang-btn" data-lang="de">Deutsch</button>
+            <button class="lang-btn" data-lang="es">Español</button>
+          </div>
 
-          <span class="lang-tab">Français</span>
-          <p class="about-text">Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de Business Intelligence.</p>
-
-          <span class="lang-tab">Deutsch</span>
-          <p class="about-text">Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und Business Intelligence Plattformen.</p>
+          <div class="lang-content" id="lang-en">
+            <p class="about-text">I am a data-driven professional with a background in statistics, data science, and Business Intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, optimize processes, and contribute to meaningful solutions.</p>
+          </div>
+          <div class="lang-content" id="lang-fr" style="display:none;">
+            <p class="about-text">Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de Business Intelligence. Passionné par l'exploitation des données pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des informations stratégiques, d'optimiser les processus et de contribuer à des solutions significatives.</p>
+          </div>
+          <div class="lang-content" id="lang-de" style="display:none;">
+            <p class="about-text">Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. Derzeit absolviere ich einen MBA mit einer Konzentration in Informationssystemmanagement. Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und Business Intelligence Plattformen.</p>
+          </div>
+          <div class="lang-content" id="lang-es" style="display:none;">
+            <p class="about-text">Soy un profesional orientado a los datos, con formación en estadística, ciencia de datos e inteligencia empresarial. Actualmente curso un MBA con concentración en Gestión de Sistemas de Información, y me especializo en diseño de estudios, análisis de datos y visualización utilizando herramientas como R, Python, SQL, SAS, SAP y plataformas de Business Intelligence. Con pasión por aprovechar los datos para impulsar decisiones estratégicas, disfruto trabajando en proyectos que descubren información valiosa, optimizan procesos y contribuyen a soluciones significativas.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -974,6 +1011,15 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
     reveals.forEach(r => observer.observe(r));
+    // ── Language switcher ──
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.lang-content').forEach(c => c.style.display = 'none');
+        btn.classList.add('active');
+        document.getElementById('lang-' + btn.dataset.lang).style.display = 'block';
+      });
+    });
   </script>
 </body>
 </html>
