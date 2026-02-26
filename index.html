@@ -125,6 +125,12 @@
       width: 80%;
       opacity: 0.6;
     }
+
+    /* Ensure all project cards have equal height images */
+    #projects .card-img-top {
+      height: 160px;
+      object-fit: cover;
+    }
   </style>
 </head>
 <body>
@@ -187,101 +193,115 @@
     </div>
   </section>
 
- <hr>
-<div class="section-header-wrapper" id="projects">
-  <h2 class="section-title">Projects</h2>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
-        <div class="card-body text-center">
-          <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
-          <p>This Python + TensorFlow + Streamlit dashboard uses World Bank API data for predictive economic and healthcare analysis.</p>
-          <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
-          <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
-        <div class="card-body text-center">
-          <h5 class="card-title">African Economy Insights Dashboard</h5>
-          <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
-          <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
-          <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
-        <div class="card-body text-center">
-          <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
-          <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
-          <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
-          <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
-        </div>
-      </div>
-    </div>
-
-        <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/traderisk1.png" class="card-img-top" alt="International Trade Risk">
-        <div class="card-body text-center">
-          <h5 class="card-title">International Trade Risk</h5>
-          <p>Python Dash to visualize global trade risks.</p>
-          <a href="https://https://gscr.onrender.com" class="btn btn-primary" target="_blank">View</a>
-          <a href="https://https://github.com/MouhamadBani/GSCR" class="btn btn-secondary">Source</a>
-        </div>
-      </div>
-    </div>
+  <hr>
+  <div class="section-header-wrapper" id="projects">
+    <h2 class="section-title">Projects</h2>
   </div>
-</div>
 
-  
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
-        <div class="card-body text-center">
-          <h5 class="card-title">Employment & Workforce Analysis</h5>
-          <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
-          <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
-          <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
+  <div class="container">
+    <div class="row">
+
+      <!-- Card 1 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
+            <p>Python + TensorFlow + Streamlit dashboard using World Bank API data for predictive economic and healthcare analysis.</p>
+            <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
+            <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
-        <div class="card-body text-center">
-          <h5 class="card-title">Africa's Digital Payments Growth</h5>
-          <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
-          <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
-          <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
+      <!-- Card 2 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">African Economy Insights Dashboard</h5>
+            <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
+            <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
-        <div class="card-body text-center">
-          <h5 class="card-title">Bank Operations Management DB</h5>
-          <p>SQL database schema for structured financial tracking and operations monitoring.</p>
-          <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
-          <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
+      <!-- Card 3 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
+          <div class="card-body text-center">
+            <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
+            <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
+            <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- Card 4 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/traderisk1.png" class="card-img-top" alt="International Trade Risk">
+          <div class="card-body text-center">
+            <h5 class="card-title">International Trade Risk</h5>
+            <p>Python Dash application to visualize global trade risks.</p>
+            <a href="https://gscr.onrender.com" class="btn btn-primary" target="_blank">View</a>
+            <a href="https://github.com/MouhamadBani/GSCR" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
+          <div class="card-body text-center">
+            <h5 class="card-title">Employment & Workforce Analysis</h5>
+            <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
+            <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
+          <div class="card-body text-center">
+            <h5 class="card-title">Africa's Digital Payments Growth</h5>
+            <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
+            <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
+            <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
+          <div class="card-body text-center">
+            <h5 class="card-title">Bank Operations Management DB</h5>
+            <p>SQL database schema for structured financial tracking and operations monitoring.</p>
+            <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
+            <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 — Placeholder for your upcoming project -->
+      <div class="col-md-3 mb-4">
+        <div class="card h-100" style="border: 2px dashed #F4B72F; background: transparent;">
+          <div class="card-body text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 300px;">
+            <i class="fas fa-plus-circle fa-3x mb-3" style="color: #F4B72F;"></i>
+            <h5 class="card-title" style="color: #F4B72F;">Coming Soon</h5>
+            <p style="color: #aaa;">Your next project will go here.</p>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -311,7 +331,7 @@
         <div class="p-3 rounded shadow-sm skill-box h-100">
           <i class="fas fa-chart-line fa-2x mb-2"></i>
           <h5>Data Visualization & Web Application</h5>
-          <p>Excel | SAP | Streamlit | R Shiny </p>
+          <p>Excel | SAP | Streamlit | R Shiny</p>
         </div>
       </div>
       <div class="col-md-3 mb-4">
@@ -369,7 +389,3 @@
   </script>
 </body>
 </html>
-
-
-
-
