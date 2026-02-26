@@ -3,145 +3,566 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Modibo Bani's Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <title>Mouhamad Modibo Bani — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    :root {
+      --gold: #C9972B;
+      --gold-light: #F0C060;
+      --gold-pale: #F5E4A8;
+      --green: #0A5C3A;
+      --green-mid: #0D7A4E;
+      --green-bright: #14A868;
+      --obsidian: #0C0E0D;
+      --surface: #111411;
+      --surface-2: #181C19;
+      --surface-3: #1F251F;
+      --border: rgba(201,151,43,0.18);
+      --text: #E8EAE8;
+      --text-muted: #8A948A;
+      --text-dim: #5A645A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #121212;
-      color: #e0e0e0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--obsidian);
+      color: var(--text);
+      overflow-x: hidden;
     }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ─── NAVBAR ─── */
     .navbar {
-      background: linear-gradient(135deg, #006747, #F4B72F);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 40px;
+      background: transparent;
+      transition: all 0.4s ease;
+      border-bottom: 1px solid transparent;
     }
-    .navbar-brand, .nav-link {
-      color: white !important;
+    .navbar.scrolled {
+      background: rgba(12,14,13,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+    }
+    .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold-light) !important;
+      text-decoration: none;
+    }
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.82rem;
       font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-left: 32px;
+      position: relative;
+      transition: color 0.3s;
+      text-decoration: none;
     }
-    .nav-link:hover {
-      color: #F4B72F !important;
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
     }
-    .hero-banner {
-      height: 100vh;
-      background: linear-gradient(145deg, #0a0f1c, #1a1f2e);
+    .nav-link:hover { color: var(--gold-light) !important; }
+    .nav-link:hover::after { width: 100%; }
+    .navbar-toggler { border: 1px solid var(--border); }
+    .navbar-toggler-icon { filter: invert(0.8); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--obsidian);
+    }
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      opacity: 0.45;
+    }
+    .hero-glow-left {
+      position: absolute;
+      left: -200px; top: 20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(10,92,58,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-right {
+      position: absolute;
+      right: -100px; bottom: 10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,151,43,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+    .hero-name span {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-divider {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 28px auto;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.7s forwards;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      min-height: 1.6em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.9s forwards;
+    }
+    .hero-subtitle .cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--gold);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+    .hero-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.1s forwards;
+    }
+    .btn-gold {
+      padding: 13px 32px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold-light);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    .btn-gold:hover { color: #0C0E0D; }
+    .btn-gold:hover::before { transform: scaleX(1); }
+    .btn-green {
+      padding: 13px 32px;
+      background: var(--green);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      border: 1px solid var(--green-mid);
+      transition: all 0.3s ease;
+    }
+    .btn-green:hover { background: var(--green-mid); color: #fff; }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 100px 0; }
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.15;
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .thin-rule {
+      width: 48px; height: 1px;
+      background: var(--gold);
+      margin: 20px 0 40px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--surface);
+    }
+    .about-photo-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .about-photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      right: 12px; bottom: 12px;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .about-photo-wrap::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px;
+      right: -12px; bottom: -12px;
+      background: var(--green);
+      opacity: 0.3;
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .about-photo {
+      width: 280px;
+      max-width: 100%;
+      border-radius: 4px;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: grayscale(20%) contrast(1.05);
+    }
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .lang-tab {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--obsidian); }
+    .project-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      height: 100%;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,151,43,0.15);
+    }
+    .project-card-img {
+      height: 150px;
+      object-fit: cover;
+      width: 100%;
+      filter: grayscale(30%) brightness(0.85);
+      transition: filter 0.35s ease;
+    }
+    .project-card:hover .project-card-img {
+      filter: grayscale(0%) brightness(1);
+    }
+    .project-card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+    .project-links {
+      display: flex;
+      gap: 10px;
+    }
+    .project-btn {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+    .project-btn-primary {
+      background: var(--green);
+      color: #fff;
+      border: 1px solid var(--green-mid);
+    }
+    .project-btn-primary:hover { background: var(--green-mid); color: #fff; }
+    .project-btn-secondary {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .project-btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* Coming soon card */
+    .project-card-placeholder {
+      background: transparent;
+      border: 1px dashed rgba(201,151,43,0.25);
+      border-radius: 4px;
+      height: 100%;
+      min-height: 280px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      color: #ffffff;
+      gap: 12px;
+      transition: border-color 0.3s;
+    }
+    .project-card-placeholder:hover { border-color: var(--gold); }
+    .placeholder-icon {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(201,151,43,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .placeholder-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--surface); }
+    .skill-card {
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px 24px;
+      height: 100%;
+      transition: border-color 0.3s, transform 0.3s;
       position: relative;
       overflow: hidden;
-      padding: 0 20px;
     }
-    .hero-banner h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
-      animation: glow 2s ease-in-out infinite alternate;
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--green), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
     }
-    .hero-banner p {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      color: #bbbbbb;
+    .skill-card:hover { border-color: rgba(201,151,43,0.4); transform: translateY(-4px); }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-icon {
+      width: 42px; height: 42px;
+      background: rgba(10,92,58,0.2);
+      border: 1px solid rgba(10,92,58,0.4);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: var(--green-bright);
+      font-size: 1.1rem;
     }
-    .hero-banner .btn-outline-light {
-      border-radius: 25px;
-      padding: 10px 25px;
-      transition: transform 0.3s ease;
+    .skill-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
     }
-    .hero-banner .btn-outline-light:hover {
-      transform: scale(1.05);
+    .skill-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #00ffd5, 0 0 10px #00ffd5; }
-      to { text-shadow: 0 0 15px #00ffd5, 0 0 30px #00ffd5; }
+    .skill-tool {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-muted);
+      transition: all 0.2s;
     }
-    .cursor {
-      display: inline-block;
-      background-color: #00ffd5;
-      width: 2px;
-      height: 1.2em;
-      animation: blink 0.7s infinite;
-      margin-left: 5px;
+    .skill-tool:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* ─── FOOTER / CONTACT ─── */
+    #contact {
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+    }
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .contact-icon {
+      width: 32px; height: 32px;
+      background: rgba(10,92,58,0.2);
+      border: 1px solid rgba(10,92,58,0.3);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green-bright);
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+    .contact-value { color: var(--text); }
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+    .footer-bottom span { color: var(--gold); }
+
+    /* ─── SECTION DIVIDER ─── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
-    .profile-img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
-    .btn-primary {
-      background-color: #006747;
-      border-color: #006747;
-      border-radius: 25px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background-color: #004a34;
-    }
-    .footer {
-      background: linear-gradient(135deg, #006747, #F4B72F);
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .skill-box {
-      background: linear-gradient(135deg, #228B22, #006747);
-      color: #ffffff;
-    }
-    .section-title {
-      background: linear-gradient(145deg, #F4B72F, #FFD700);
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 3px #333;
-      display: inline-block;
-    }
-    .section-header-wrapper {
-      text-align: center;
-      margin-top: 60px;
-      margin-bottom: 30px;
-    }
-    hr {
-      border: none;
-      height: 2px;
-      background: linear-gradient(to right, #006747, #F4B72F, #006747);
-      margin: 60px auto;
-      width: 80%;
-      opacity: 0.6;
-    }
 
-    /* Ensure all project cards have equal height images */
-    #projects .card-img-top {
-      height: 160px;
-      object-fit: cover;
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 20px; }
+      section { padding: 70px 0; }
+      .about-photo { width: 200px; }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg">
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar navbar-expand-lg" id="navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">Welcome to Mouhamad Modibo Bani's Portfolio</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <a class="navbar-brand" href="#">MMB</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
@@ -151,242 +572,394 @@
     </div>
   </nav>
 
-  <section class="hero-banner">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Hi, I'm Mouhamad Modibo Bani</h1>
-      <p class="lead">
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-glow-left"></div>
+    <div class="hero-glow-right"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Data Science · Business Intelligence · Analytics</p>
+      <h1 class="hero-name">
+        Mouhamad<br><span>Modibo Bani</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subtitle">
         <span id="typed-text"></span><span class="cursor"></span>
       </p>
-      <a href="#about" class="btn btn-outline-light btn-lg mt-3">Learn More About Me</a>
-    </div>
-  </section>
-
-  <section id="about" class="container mt-5" style="background: linear-gradient(135deg, #006747, #F4B72F); border-radius: 10px; padding: 30px;">
-    <div class="row align-items-center">
-      <div class="col-md-4 text-center">
-        <img src="images/about/MyphotoProfile.JPG" alt="Profile Picture" class="profile-img">
-      </div>
-      <div class="col-md-8">
-        <h2>About Me</h2>
-        <p>I am a data-driven professional with a background in statistics, data science, and Business Intelligence. 
-                    Currently pursuing an MBA with a concentration in Information Systems Management, 
-                    I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. 
-                    With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, 
-                    optimize processes, and contribute to meaningful solutions.</p>
-        <h2 class="mt-4">À propos de moi</h2>
-        <p>Je suis un professionnel axé sur les données, avec une formation en statistiques, 
-                        data science et business intelligence. Je suis actuellement en train de poursuivre un MBA 
-                        avec une concentration en gestion des systèmes d'information, 
-                        je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils 
-                        comme R, Python, SQL, SAS, SAP et les plateformes de Business Intelligence. Passionné par l'exploitation des données 
-                        pour orienter les décisions stratégiques, j'aime travailler sur des projets qui permettent de découvrir des informations stratégiques,
-                        d'optimiser les processus et de contribuer à des solutions significatives.</p>
-        <h2 class="mt-4">Über mich</h2>
-        <p>Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, 
-                            Data Science und Business Intelligence. Derzeit absolviere ich einen MBA mit einer 
-                            Doppelkonzentration in Informationssystemmanagement. 
-                            Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools 
-                            wie R, Python, SQL, SAS, SAP und Business Intelligence Plattformen. Mit einer Leidenschaft für die Nutzung von Daten 
-                            zur Unterstützung strategischer Entscheidungen arbeite ich gerne an Projekten,
-                             die Erkenntnisse gewinnen, Prozesse optimieren und sinnvolle Lösungen beitragen.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-gold">View Projects</a>
+        <a href="#contact" class="btn-green">Get in Touch</a>
       </div>
     </div>
   </section>
 
-  <hr>
-  <div class="section-header-wrapper" id="projects">
-    <h2 class="section-title">Projects</h2>
-  </div>
-
-  <div class="container">
-    <div class="row">
-
-      <!-- Card 1 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/futuristic_dashboard_no_text.jpg" class="card-img-top" alt="Global Economic & Health Insights Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">Global Economic & Health Insights Dashboard</h5>
-            <p>Python + TensorFlow + Streamlit dashboard using World Bank API data for predictive economic and healthcare analysis.</p>
-            <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="btn btn-primary" target="_blank">View</a>
-            <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="btn btn-secondary">Source</a>
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-4 text-center reveal">
+          <div class="about-photo-wrap" style="display:inline-block;">
+            <img src="images/about/MyphotoProfile.JPG" alt="Mouhamad Modibo Bani" class="about-photo">
           </div>
         </div>
-      </div>
+        <div class="col-lg-8 reveal reveal-delay-2">
+          <p class="section-label">About Me</p>
+          <h2 class="section-heading">Data-driven <em>professional</em><br>& analytical thinker</h2>
+          <div class="thin-rule"></div>
 
-      <!-- Card 2 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/1.jpg" class="card-img-top" alt="African Economy Insights Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">African Economy Insights Dashboard</h5>
-            <p>Interactive R Shiny dashboard providing key economic insights for African countries.</p>
-            <a href="https://mouhamad9.shinyapps.io/afknds/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
+          <span class="lang-tab">🇬🇧 English</span>
+          <p class="about-text">I am a data-driven professional with a background in statistics, data science, and Business Intelligence. Currently pursuing an MBA with a concentration in Information Systems Management, I specialize in study design, data analysis, and visualization using tools like R, Python, SQL, SAS, SAP and BI platforms. With a passion for leveraging data to drive strategic decisions, I enjoy working on projects that uncover insights, optimize processes, and contribute to meaningful solutions.</p>
 
-      <!-- Card 3 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/2.jpg" class="card-img-top" alt="African Regional Economic Communities Dashboard">
-          <div class="card-body text-center">
-            <h5 class="card-title">African Regional Economic Communities Dashboard</h5>
-            <p>Dashboard analyzing GDP, population, and electricity access trends across African RECs.</p>
-            <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
+          <span class="lang-tab">🇫🇷 Français</span>
+          <p class="about-text">Je suis un professionnel axé sur les données, avec une formation en statistiques, data science et business intelligence. Je me spécialise dans la conception d'études, l'analyse des données et la visualisation à l'aide d'outils comme R, Python, SQL, SAS, SAP et les plateformes de Business Intelligence.</p>
 
-      <!-- Card 4 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/traderisk1.png" class="card-img-top" alt="International Trade Risk">
-          <div class="card-body text-center">
-            <h5 class="card-title">International Trade Risk</h5>
-            <p>Python Dash application to visualize global trade risks.</p>
-            <a href="https://gscr.onrender.com" class="btn btn-primary" target="_blank">View</a>
-            <a href="https://github.com/MouhamadBani/GSCR" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="card-img-top" alt="Employment & Workforce Analysis">
-          <div class="card-body text-center">
-            <h5 class="card-title">Employment & Workforce Analysis</h5>
-            <p>Interactive dashboard for analyzing employment metrics across countries and regions.</p>
-            <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/payments_growth.jpg" class="card-img-top" alt="Africa Digital Payments">
-          <div class="card-body text-center">
-            <h5 class="card-title">Africa's Digital Payments Growth</h5>
-            <p>Map dashboard showing digital payment adoption across Africa with forecasts.</p>
-            <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="btn btn-primary">View</a>
-            <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 7 -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <img src="images/projects/3.jpg" class="card-img-top" alt="Bank Operations Management">
-          <div class="card-body text-center">
-            <h5 class="card-title">Bank Operations Management DB</h5>
-            <p>SQL database schema for structured financial tracking and operations monitoring.</p>
-            <a href="images/projects/BankOpsMgtDB.png" class="btn btn-primary" target="_blank">View Schema</a>
-            <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="btn btn-secondary">Source</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 8 — Placeholder for your upcoming project -->
-      <div class="col-md-3 mb-4">
-        <div class="card h-100" style="border: 2px dashed #F4B72F; background: transparent;">
-          <div class="card-body text-center d-flex flex-column align-items-center justify-content-center" style="min-height: 300px;">
-            <i class="fas fa-plus-circle fa-3x mb-3" style="color: #F4B72F;"></i>
-            <h5 class="card-title" style="color: #F4B72F;">Coming Soon</h5>
-            <p style="color: #aaa;">Working on my Next R project </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <hr>
-  <div class="section-header-wrapper" id="skills">
-    <h2 class="section-title">Skills</h2>
-  </div>
-
-  <section class="container">
-    <div class="row text-center">
-      <div class="col-md-3 mb-4">
-        <div class="p-3 rounded shadow-sm skill-box h-100">
-          <i class="fas fa-database fa-2x mb-2"></i>
-          <h5>Data Science & Statistical Analysis</h5>
-          <p>Python | R | SAS | MySQL</p>
-        </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="p-3 rounded shadow-sm skill-box h-100">
-          <i class="fas fa-chart-line fa-2x mb-2"></i>
-          <h5>Business Intelligence & Reporting</h5>
-          <p>SAP | Power BI | Tableau | Excel</p>
-        </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="p-3 rounded shadow-sm skill-box h-100">
-          <i class="fas fa-chart-line fa-2x mb-2"></i>
-          <h5>Data Visualization & Web Application</h5>
-          <p>Excel | SAP | Streamlit | R Shiny</p>
-        </div>
-      </div>
-      <div class="col-md-3 mb-4">
-        <div class="p-3 rounded shadow-sm skill-box h-100">
-          <i class="fas fa-project-diagram fa-2x mb-2"></i>
-          <h5>Web Development & Programming</h5>
-          <p>C++ | HTML | CSS</p>
+          <span class="lang-tab">🇩🇪 Deutsch</span>
+          <p class="about-text">Ich bin ein datengetriebener Fachmann mit einem Hintergrund in Statistik, Data Science und Business Intelligence. Ich spezialisiere mich auf Studiendesign, Datenanalyse und Visualisierung mit Tools wie R, Python, SQL, SAS, SAP und Business Intelligence Plattformen.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <hr>
-  <section class="footer" id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: mouhamadbani28@gmail.com | Phone: +1 320 237 1396 | mmbani@okramail.deltastate.edu</p>
+  <div class="section-divider"></div>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-heading">Projects & <em>Dashboards</em></h2>
+        <div class="thin-rule"></div>
+      </div>
+
+      <div class="row g-3">
+
+        <!-- Card 1 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
+          <div class="project-card">
+            <img src="images/projects/futuristic_dashboard_no_text.jpg" class="project-card-img" alt="Global Economic & Health Insights">
+            <div class="project-card-body">
+              <p class="project-tag">Python · TensorFlow · Streamlit</p>
+              <h3 class="project-title">Global Economic & Health Insights Dashboard</h3>
+              <p class="project-desc">World Bank API data powering predictive economic and healthcare analysis with ML forecasting.</p>
+              <div class="project-links">
+                <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
+          <div class="project-card">
+            <img src="images/projects/1.jpg" class="project-card-img" alt="African Economy Insights">
+            <div class="project-card-body">
+              <p class="project-tag">R · Shiny</p>
+              <h3 class="project-title">African Economy Insights Dashboard</h3>
+              <p class="project-desc">Interactive R Shiny dashboard providing key economic insights for African countries.</p>
+              <div class="project-links">
+                <a href="https://mouhamad9.shinyapps.io/afknds/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
+          <div class="project-card">
+            <img src="images/projects/2.jpg" class="project-card-img" alt="African Regional Economic Communities">
+            <div class="project-card-body">
+              <p class="project-tag">R · Shiny</p>
+              <h3 class="project-title">African Regional Economic Communities Dashboard</h3>
+              <p class="project-desc">GDP, population, and electricity access trends across African RECs.</p>
+              <div class="project-links">
+                <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
+          <div class="project-card">
+            <img src="images/projects/traderisk1.png" class="project-card-img" alt="International Trade Risk">
+            <div class="project-card-body">
+              <p class="project-tag">Python · Dash</p>
+              <h3 class="project-title">International Trade Risk</h3>
+              <p class="project-desc">Python Dash application to visualize and analyze global supply chain and trade risks.</p>
+              <div class="project-links">
+                <a href="https://gscr.onrender.com" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/GSCR" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
+          <div class="project-card">
+            <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="project-card-img" alt="Employment & Workforce Analysis">
+            <div class="project-card-body">
+              <p class="project-tag">Python · Streamlit</p>
+              <h3 class="project-title">Employment & Workforce Analysis</h3>
+              <p class="project-desc">Interactive dashboard for analyzing employment metrics across countries and regions.</p>
+              <div class="project-links">
+                <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
+          <div class="project-card">
+            <img src="images/projects/payments_growth.jpg" class="project-card-img" alt="Africa Digital Payments">
+            <div class="project-card-body">
+              <p class="project-tag">Python · Streamlit</p>
+              <h3 class="project-title">Africa's Digital Payments Growth</h3>
+              <p class="project-desc">Map dashboard showing digital payment adoption across Africa with regional forecasts.</p>
+              <div class="project-links">
+                <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
+          <div class="project-card">
+            <img src="images/projects/3.jpg" class="project-card-img" alt="Bank Operations Management DB">
+            <div class="project-card-body">
+              <p class="project-tag">SQL · MySQL</p>
+              <h3 class="project-title">Bank Operations Management DB</h3>
+              <p class="project-desc">Structured SQL database schema for financial tracking and operational monitoring.</p>
+              <div class="project-links">
+                <a href="images/projects/BankOpsMgtDB.png" class="project-btn project-btn-primary" target="_blank">Schema →</a>
+                <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="project-btn project-btn-secondary" target="_blank">Source</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 — Placeholder -->
+        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
+          <div class="project-card-placeholder">
+            <div class="placeholder-icon">+</div>
+            <p class="placeholder-label">Coming Soon</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Expertise</p>
+        <h2 class="section-heading">Skills & <em>Toolset</em></h2>
+        <div class="thin-rule"></div>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-md-3 col-sm-6 reveal reveal-delay-1">
+          <div class="skill-card">
+            <div class="skill-icon">⚗</div>
+            <h4 class="skill-title">Data Science & Statistical Analysis</h4>
+            <div class="skill-tools">
+              <span class="skill-tool">Python</span>
+              <span class="skill-tool">R</span>
+              <span class="skill-tool">SAS</span>
+              <span class="skill-tool">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 reveal reveal-delay-2">
+          <div class="skill-card">
+            <div class="skill-icon">📊</div>
+            <h4 class="skill-title">Business Intelligence & Reporting</h4>
+            <div class="skill-tools">
+              <span class="skill-tool">SAP</span>
+              <span class="skill-tool">Power BI</span>
+              <span class="skill-tool">Tableau</span>
+              <span class="skill-tool">Excel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 reveal reveal-delay-3">
+          <div class="skill-card">
+            <div class="skill-icon">🖥</div>
+            <h4 class="skill-title">Data Visualization & Web Apps</h4>
+            <div class="skill-tools">
+              <span class="skill-tool">Streamlit</span>
+              <span class="skill-tool">R Shiny</span>
+              <span class="skill-tool">Plotly Dash</span>
+              <span class="skill-tool">Excel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 reveal reveal-delay-4">
+          <div class="skill-card">
+            <div class="skill-icon">⌨</div>
+            <h4 class="skill-title">Web Development & Programming</h4>
+            <div class="skill-tools">
+              <span class="skill-tool">C++</span>
+              <span class="skill-tool">HTML</span>
+              <span class="skill-tool">CSS</span>
+              <span class="skill-tool">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ── CONTACT / FOOTER ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 reveal">
+          <p class="section-label">Get in Touch</p>
+          <h2 class="section-heading">Let's <em>connect</em></h2>
+          <div class="thin-rule"></div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; max-width: 380px;">
+            Open to collaboration, data projects, and new opportunities. Reach out via any of the channels below.
+          </p>
+        </div>
+        <div class="col-lg-7 reveal reveal-delay-2 mt-5 mt-lg-0 d-flex flex-column justify-content-center">
+          <div class="contact-line">
+            <div class="contact-icon">✉</div>
+            <span class="contact-value">mouhamadbani28@gmail.com</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-icon">✉</div>
+            <span class="contact-value">mmbani@okramail.deltastate.edu</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-icon">☎</div>
+            <span class="contact-value">+1 320 237 1396</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 <span>Mouhamad Modibo Bani</span>. Crafted with precision.
+      </div>
+    </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Typing animation ──
     const texts = [
       "Bachelor of Science in Statistics",
-      "Master of Business Administration in Management Information System",
-      "Data Enthusiast | Analytical Thinker | Amateur Philosopher"
+      "MBA — Information Systems Management",
+      "Data Enthusiast · Analytical Thinker · Amateur Philosopher"
     ];
-    let index = 0;
-    let charIndex = 0;
-    let currentText = "";
-    let isDeleting = false;
-    const typedTextElement = document.getElementById("typed-text");
+    let tIdx = 0, cIdx = 0, deleting = false;
+    const el = document.getElementById("typed-text");
 
     function type() {
-      if (index >= texts.length) index = 0;
-      currentText = texts[index];
-
-      if (isDeleting) {
-        typedTextElement.textContent = currentText.substring(0, charIndex--);
-        if (charIndex < 0) {
-          isDeleting = false;
-          index++;
-        }
+      const current = texts[tIdx % texts.length];
+      el.textContent = current.substring(0, cIdx);
+      if (!deleting) {
+        cIdx++;
+        if (cIdx > current.length) { deleting = true; setTimeout(type, 1400); return; }
       } else {
-        typedTextElement.textContent = currentText.substring(0, charIndex++);
-        if (charIndex > currentText.length) {
-          isDeleting = true;
-          setTimeout(type, 1000);
-          return;
-        }
+        cIdx--;
+        if (cIdx < 0) { deleting = false; tIdx++; cIdx = 0; }
       }
+      setTimeout(type, deleting ? 40 : 85);
+    }
+    document.addEventListener("DOMContentLoaded", type);
 
-      setTimeout(type, isDeleting ? 50 : 100);
+    // ── Particle canvas ──
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const GOLD = 'rgba(201,151,43,';
+    const GREEN = 'rgba(20,168,104,';
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function Particle() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.r = Math.random() * 1.5 + 0.4;
+      this.color = Math.random() > 0.5 ? GOLD : GREEN;
+      this.alpha = Math.random() * 0.5 + 0.15;
     }
 
-    document.addEventListener("DOMContentLoaded", type);
+    for (let i = 0; i < 90; i++) particles.push(new Particle());
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      });
+
+      // Draw connecting lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 110) {
+            const alpha = (1 - dist/110) * 0.12;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = GOLD + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
   </script>
 </body>
 </html>
-
