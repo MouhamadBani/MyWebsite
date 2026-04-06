@@ -4,8 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mouhamad Modibo Bani — Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
   <style>
     :root {
       --gold: #C9972B;
@@ -57,12 +63,14 @@
       padding: 14px 40px;
     }
     .navbar-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--gold-light) !important;
       text-decoration: none;
+    }
+    .navbar-brand svg {
+      display: block;
     }
     .nav-link {
       color: var(--text-muted) !important;
@@ -415,7 +423,6 @@
     }
     .project-btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
 
-    /* Coming soon card */
     .project-card-placeholder {
       background: transparent;
       border: 1px dashed rgba(201,151,43,0.25);
@@ -577,7 +584,6 @@
       50% { opacity: 0; }
     }
 
-    /* Scroll reveal */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -605,10 +611,30 @@
   <!-- ── NAVBAR ── -->
   <nav class="navbar navbar-expand-lg" id="navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">MMB</a>
+      <a class="navbar-brand" href="#">
+        <svg width="36" height="36" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-label="MMB Logo" role="img">
+          <polygon
+            points="40,6 67,20 67,60 40,74 13,60 13,20"
+            fill="none"
+            stroke="#C9972B"
+            stroke-width="3"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M28 52V28L40 42L52 28V52"
+            fill="none"
+            stroke="#F0C060"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -692,7 +718,6 @@
 
       <div class="row g-3">
 
-        <!-- Card 1 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
           <div class="project-card">
             <img src="images/projects/futuristic_dashboard_no_text.jpg" class="project-card-img" alt="Global Economic & Health Insights">
@@ -708,7 +733,6 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
           <div class="project-card">
             <img src="images/projects/1.jpg" class="project-card-img" alt="African Economy Insights">
@@ -724,7 +748,6 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
           <div class="project-card">
             <img src="images/projects/2.jpg" class="project-card-img" alt="African Regional Economic Communities">
@@ -740,7 +763,6 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
           <div class="project-card">
             <img src="images/projects/traderisk1.png" class="project-card-img" alt="International Trade Risk">
@@ -756,7 +778,6 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
           <div class="project-card">
             <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="project-card-img" alt="Employment & Workforce Analysis">
@@ -772,7 +793,6 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
           <div class="project-card">
             <img src="images/projects/payments_growth.jpg" class="project-card-img" alt="Africa Digital Payments">
@@ -788,7 +808,6 @@
           </div>
         </div>
 
-        <!-- Card 7 -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
           <div class="project-card">
             <img src="images/projects/3.jpg" class="project-card-img" alt="Bank Operations Management DB">
@@ -804,7 +823,6 @@
           </div>
         </div>
 
-        <!-- Card 8 — Placeholder -->
         <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
           <div class="project-card-placeholder">
             <div class="placeholder-icon">+</div>
@@ -922,10 +940,18 @@
       el.textContent = current.substring(0, cIdx);
       if (!deleting) {
         cIdx++;
-        if (cIdx > current.length) { deleting = true; setTimeout(type, 1400); return; }
+        if (cIdx > current.length) {
+          deleting = true;
+          setTimeout(type, 1400);
+          return;
+        }
       } else {
         cIdx--;
-        if (cIdx < 0) { deleting = false; tIdx++; cIdx = 0; }
+        if (cIdx < 0) {
+          deleting = false;
+          tIdx++;
+          cIdx = 0;
+        }
       }
       setTimeout(type, deleting ? 40 : 85);
     }
@@ -959,8 +985,11 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
+        p.x += p.vx;
+        p.y += p.vy;
+
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
         if (p.y < 0) p.y = canvas.height;
@@ -972,14 +1001,13 @@
         ctx.fill();
       });
 
-      // Draw connecting lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
+          const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 110) {
-            const alpha = (1 - dist/110) * 0.12;
+            const alpha = (1 - dist / 110) * 0.12;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -989,6 +1017,7 @@
           }
         }
       }
+
       requestAnimationFrame(draw);
     }
     draw();
@@ -996,9 +1025,12 @@
     // ── Scroll reveal ──
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
     }, { threshold: 0.12 });
     reveals.forEach(r => observer.observe(r));
+
     // ── Language switcher ──
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
