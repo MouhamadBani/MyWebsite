@@ -39,7 +39,61 @@
       --text: #E8EAE8;
       --text-muted: #8A948A;
       --text-dim: #5A645A;
+
+      --shadow-soft: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,151,43,0.15);
+      --shadow-card: 0 16px 40px rgba(0,0,0,0.35);
+      --img-filter-1: grayscale(20%) contrast(1.05);
+      --img-filter-2: grayscale(30%) brightness(0.85);
+      --img-filter-2-hover: grayscale(0%) brightness(1);
     }
+
+    /* ─── LIGHT THEME ─── */
+    html[data-theme="light"] {
+      --gold: #AD7A16;
+      --gold-light: #C79A3B;
+      --gold-pale: #8F6519;
+      --green: #0A5C3A;
+      --green-mid: #0D7A4E;
+      --green-bright: #128F5C;
+      --obsidian: #FAF8F2;
+      --surface: #F1ECDF;
+      --surface-2: #FFFFFF;
+      --surface-3: #F5F1E4;
+      --border: rgba(173,122,22,0.24);
+      --text: #211F19;
+      --text-muted: #57574C;
+      --text-dim: #8C8A78;
+
+      --shadow-soft: 0 24px 55px rgba(40,32,10,0.12), 0 0 0 1px rgba(173,122,22,0.16);
+      --shadow-card: 0 14px 36px rgba(40,32,10,0.08);
+      --img-filter-1: none;
+      --img-filter-2: grayscale(8%) brightness(1);
+      --img-filter-2-hover: grayscale(0%) brightness(1.02);
+    }
+
+    html[data-theme="light"] body { background-image: radial-gradient(circle at 15% 0%, rgba(10,92,58,0.05), transparent 45%), radial-gradient(circle at 85% 15%, rgba(173,122,22,0.06), transparent 40%); }
+    html[data-theme="light"] .hero-name { color: #17150F; }
+    html[data-theme="light"] .hero-name span { background: linear-gradient(135deg, var(--gold), var(--gold-pale)); -webkit-background-clip: text; background-clip: text; }
+    html[data-theme="light"] .section-heading { color: #17150F; }
+    html[data-theme="light"] .project-title { color: #17150F; }
+    html[data-theme="light"] .skill-title { color: #17150F; }
+    html[data-theme="light"] .about-photo-wrap::before { border-color: var(--gold); }
+    html[data-theme="light"] .about-photo-wrap::after { background: var(--green); opacity: 0.12; }
+    html[data-theme="light"] .hero-glow-left { background: radial-gradient(circle, rgba(10,92,58,0.14) 0%, transparent 70%); opacity: 0.7; }
+    html[data-theme="light"] .hero-glow-right { background: radial-gradient(circle, rgba(173,122,22,0.14) 0%, transparent 70%); opacity: 0.7; }
+    html[data-theme="light"] #hero-canvas { opacity: 0.22; }
+    html[data-theme="light"] .btn-gold { color: var(--gold-pale); }
+    html[data-theme="light"] .btn-gold:hover { color: #FAF8F2; }
+    html[data-theme="light"] .btn-green { color: #FAF8F2; }
+    html[data-theme="light"] .navbar.scrolled { background: rgba(250,248,242,0.9); box-shadow: 0 2px 20px rgba(40,32,10,0.06); }
+    html[data-theme="light"] .skill-tool { background: rgba(10,92,58,0.03); color: var(--text-muted); }
+    html[data-theme="light"] .skill-tool:hover { background: rgba(173,122,22,0.1); color: var(--gold-pale); }
+    html[data-theme="light"] .project-card-img { filter: var(--img-filter-2); }
+    html[data-theme="light"] .placeholder-icon { color: var(--gold-pale); border-color: rgba(173,122,22,0.35); }
+    html[data-theme="light"] .contact-email-block:hover .contact-email-text { color: var(--gold-pale); }
+    html[data-theme="light"] .theme-toggle { background: rgba(10,92,58,0.04); }
+    html[data-theme="light"] .theme-toggle svg { stroke: var(--gold-pale); }
+    html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--gold-pale); }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -50,6 +104,7 @@
       background-color: var(--obsidian);
       color: var(--text);
       overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
     }
 
     /* ─── SCROLLBAR ─── */
@@ -106,6 +161,37 @@
     .nav-link:hover::after { width: 100%; }
     .navbar-toggler { border: 1px solid var(--border); }
     .navbar-toggler-icon { filter: invert(0.8); }
+    html[data-theme="light"] .navbar-toggler-icon { filter: invert(0.15); }
+
+    /* ─── THEME TOGGLE ─── */
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-left: 28px;
+      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      border-color: var(--gold);
+      transform: rotate(15deg);
+    }
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--gold-light);
+      transition: stroke 0.3s ease;
+    }
+    .theme-toggle .icon-moon { display: block; }
+    .theme-toggle .icon-sun { display: none; }
+    html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+    html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 
     /* ─── HERO ─── */
     .hero {
@@ -306,7 +392,7 @@
       display: block;
       position: relative;
       z-index: 1;
-      filter: grayscale(20%) contrast(1.05);
+      filter: var(--img-filter-1);
     }
     .about-text p {
       color: var(--text-muted);
@@ -344,6 +430,7 @@
       color: #0C0E0D;
       font-weight: 600;
     }
+    html[data-theme="light"] .lang-btn.active { color: #FAF8F3; }
     .lang-content {
       animation: fadeIn 0.35s ease;
     }
@@ -360,24 +447,24 @@
       border-radius: 4px;
       overflow: hidden;
       height: 100%;
-      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
       display: flex;
       flex-direction: column;
     }
     .project-card:hover {
       transform: translateY(-6px);
       border-color: var(--gold);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,151,43,0.15);
+      box-shadow: var(--shadow-soft);
     }
     .project-card-img {
       height: 150px;
       object-fit: cover;
       width: 100%;
-      filter: grayscale(30%) brightness(0.85);
+      filter: var(--img-filter-2);
       transition: filter 0.35s ease;
     }
     .project-card:hover .project-card-img {
-      filter: grayscale(0%) brightness(1);
+      filter: var(--img-filter-2-hover);
     }
     .project-card-body {
       padding: 20px;
@@ -476,7 +563,7 @@
       align-items: center;
       text-align: center;
       gap: 20px;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background-color 0.35s;
       position: relative;
       overflow: hidden;
     }
@@ -493,7 +580,7 @@
     .skill-card:hover {
       border-color: rgba(201,151,43,0.4);
       transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      box-shadow: var(--shadow-card);
     }
     .skill-card:hover::after { transform: scaleX(1); }
     .skill-title {
@@ -614,6 +701,7 @@
       .navbar { padding: 16px 20px; }
       section { padding: 70px 0; }
       .about-photo { width: 200px; }
+      .theme-toggle { margin-left: 16px; }
     }
   </style>
 </head>
@@ -654,6 +742,16 @@
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -697,6 +795,8 @@
             <button class="lang-btn" data-lang="fr">Français</button>
             <button class="lang-btn" data-lang="de">Deutsch</button>
             <button class="lang-btn" data-lang="es">Español</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
+            <button class="lang-btn" data-lang="ar" data-dir="rtl">العربية</button>
           </div>
 
           <div class="lang-content" id="lang-en">
@@ -710,6 +810,12 @@
           </div>
           <div class="lang-content" id="lang-es" style="display:none;">
             <p class="about-text">Soy un profesional orientado a los datos, con formación en estadística, ciencia de datos e inteligencia empresarial. Actualmente curso un MBA con concentración en Gestión de Sistemas de Información, y me especializo en diseño de estudios, análisis de datos y visualización utilizando herramientas como R, Python, SQL, SAS, SAP y plataformas de Business Intelligence. Con pasión por aprovechar los datos para impulsar decisiones estratégicas, disfruto trabajando en proyectos que descubren información valiosa, optimizan procesos y contribuyen a soluciones significativas.</p>
+          </div>
+          <div class="lang-content" id="lang-zh" style="display:none;">
+            <p class="about-text">我是一名以数据为驱动的专业人士，拥有统计学、数据科学与商业智能方面的背景。目前正在攻读工商管理硕士（MBA），主修信息系统管理方向，专长于研究设计、数据分析，并使用 R、Python、SQL、SAS、SAP 及各类商业智能平台进行数据可视化。我热衷于运用数据推动战略决策，喜欢参与那些能够挖掘洞见、优化流程并带来切实成果的项目。</p>
+          </div>
+          <div class="lang-content" id="lang-ar" style="display:none;" dir="rtl">
+            <p class="about-text">أنا محترف يعتمد على البيانات، ولديّ خلفية في الإحصاء وعلم البيانات وذكاء الأعمال. أدرس حاليًا لنيل درجة الماجستير في إدارة الأعمال (MBA) بتخصص إدارة نظم المعلومات، وأتخصص في تصميم الدراسات وتحليل البيانات وتصورها باستخدام أدوات مثل R وPython وSQL وSAS وSAP ومنصات ذكاء الأعمال. أنا شغوف باستخدام البيانات لدعم القرارات الاستراتيجية، وأستمتع بالعمل على مشاريع تكشف رؤى قيّمة وتُحسّن العمليات وتُسهم في حلول عملية وهادفة.</p>
           </div>
         </div>
       </div>
@@ -978,6 +1084,28 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ── Theme toggle (runs immediately to avoid flash) ──
+    (function() {
+      const stored = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      const initial = stored || (prefersLight ? 'light' : 'dark');
+      if (initial === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('themeToggle');
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        if (isLight) {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    });
+
     // ── Navbar scroll effect ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -1096,7 +1224,9 @@
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.lang-content').forEach(c => c.style.display = 'none');
         btn.classList.add('active');
-        document.getElementById('lang-' + btn.dataset.lang).style.display = 'block';
+        const target = document.getElementById('lang-' + btn.dataset.lang);
+        target.style.display = 'block';
+        target.setAttribute('dir', btn.dataset.dir === 'rtl' ? 'rtl' : 'ltr');
       });
     });
   </script>
