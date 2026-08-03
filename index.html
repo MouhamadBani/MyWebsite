@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bani - Portfolio</title>
 
-  <meta property="og:title" content="Mouhamad M Bani">
+  <meta property="og:title" content="Mouhamad M. Bani">
 <meta property="og:description" content="Portfolio">
 <meta property="og:image" content="https://MouhamadBani.github.io/MyWebsite/images/preview.png">
 <meta property="og:url" content="https://MouhamadBani.github.io/MyWebsite/">
 <meta property="og:type" content="website">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mouhamad M Bani">
+<meta name="twitter:title" content="Mouhamad M. Bani">
 <meta name="twitter:description" content="Portfolio">
 <meta name="twitter:image" content="https://MouhamadBani.github.io/MyWebsite/images/preview.png">
   
@@ -72,8 +72,6 @@
     }
 
     html[data-theme="light"] body { background-image: radial-gradient(circle at 10% 0%, rgba(18,61,43,0.08), transparent 40%), radial-gradient(circle at 90% 20%, rgba(166,113,15,0.12), transparent 36%); }
-    html[data-theme="light"] .hero-name { color: #170F00; }
-    html[data-theme="light"] .hero-name span { background: linear-gradient(135deg, var(--gold), var(--gold-pale)); -webkit-background-clip: text; background-clip: text; }
     html[data-theme="light"] .hero-eyebrow { color: var(--gold-pale); }
     html[data-theme="light"] .hero-subtitle { color: var(--text-muted); }
     html[data-theme="light"] .hero-divider { background: linear-gradient(to right, transparent, var(--gold-pale), transparent); }
@@ -117,6 +115,7 @@
     html[data-theme="light"] .section-label { color: var(--gold-pale); }
     html[data-theme="light"] .section-heading em { color: var(--gold-pale); font-style: italic; }
     html[data-theme="light"] .thin-rule { background: var(--gold-pale); }
+    html[data-theme="light"] .skill-card:hover { border-color: var(--gold-pale); }
     html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--gold-pale); }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -161,6 +160,10 @@
     }
     .navbar-brand svg {
       display: block;
+      transition: transform 0.4s ease;
+    }
+    .navbar-brand:hover svg {
+      transform: scale(1.08);
     }
     .nav-link {
       color: var(--text-muted) !important;
@@ -268,17 +271,14 @@
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.01em;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 8px;
       opacity: 0;
       animation: fadeUp 0.9s ease 0.5s forwards;
     }
     .hero-name span {
       font-style: italic;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
     }
     .hero-divider {
       width: 60px; height: 1px;
@@ -786,7 +786,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Transportation & Supply Chain PhD Student at North Dakota State University</p>
       <h1 class="hero-name">
-        Mouhamad<br><span>Modibo Bani</span>
+        Mouhamad <span>M. Bani</span>
       </h1>
       <div class="hero-divider"></div>
       <p class="hero-subtitle">
@@ -805,7 +805,7 @@
       <div class="row align-items-center g-5">
         <div class="col-lg-4 text-center reveal">
           <div class="about-photo-wrap" style="display:inline-block;">
-            <img src="images/about/MyphotoProfile.JPG" alt="Mouhamad Modibo Bani" class="about-photo">
+            <img src="images/about/MyphotoProfile.JPG" alt="Mouhamad M. Bani" class="about-photo">
           </div>
         </div>
         <div class="col-lg-8 reveal reveal-delay-2">
@@ -1100,7 +1100,7 @@
         </a>
       </div>
       <div class="footer-bottom">
-        © 2026 <span>Mouhamad Modibo Bani</span>
+        © 2026 <span>Mouhamad M. Bani</span>
       </div>
     </div>
   </section>
@@ -1171,8 +1171,13 @@
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
-    const GOLD = 'rgba(201,151,43,';
-    const GREEN = 'rgba(20,168,104,';
+    const PALETTE = {
+      dark: { gold: 'rgba(201,151,43,', green: 'rgba(20,168,104,' },
+      light: { gold: 'rgba(166,113,15,', green: 'rgba(18,61,43,' }
+    };
+    function currentPalette() {
+      return document.documentElement.getAttribute('data-theme') === 'light' ? PALETTE.light : PALETTE.dark;
+    }
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -1187,7 +1192,7 @@
       this.vx = (Math.random() - 0.5) * 0.35;
       this.vy = (Math.random() - 0.5) * 0.35;
       this.r = Math.random() * 1.5 + 0.4;
-      this.color = Math.random() > 0.5 ? GOLD : GREEN;
+      this.isGold = Math.random() > 0.5;
       this.alpha = Math.random() * 0.5 + 0.15;
     }
 
@@ -1195,6 +1200,7 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const palette = currentPalette();
 
       particles.forEach(p => {
         p.x += p.vx;
@@ -1207,7 +1213,7 @@
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fillStyle = (p.isGold ? palette.gold : palette.green) + p.alpha + ')';
         ctx.fill();
       });
 
@@ -1221,7 +1227,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = GOLD + alpha + ')';
+            ctx.strokeStyle = palette.gold + alpha + ')';
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
