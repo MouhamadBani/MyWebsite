@@ -464,6 +464,83 @@
 
     /* ─── PROJECTS ─── */
     #projects { background: var(--obsidian); }
+
+    .projects-slider-wrap {
+      position: relative;
+      margin: 0 -4px;
+    }
+    .projects-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 4px;
+      padding: 4px 4px 28px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    }
+    .projects-slider::-webkit-scrollbar { display: none; height: 0; }
+    .project-slide {
+      flex: 0 0 auto;
+      width: 270px;
+      scroll-snap-align: start;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 42%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-card);
+    }
+    .slider-arrow:hover {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #0C0E0D;
+    }
+    .slider-arrow:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+    .slider-arrow-prev { left: -14px; }
+    .slider-arrow-next { right: -14px; }
+    .projects-progress {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .projects-progress span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .projects-progress span.active {
+      background: var(--gold);
+      transform: scale(1.25);
+    }
+    @media (max-width: 640px) {
+      .slider-arrow { display: none; }
+      .project-slide { width: 78vw; }
+    }
+
     .project-card {
       background: var(--surface-2);
       border: 1px solid var(--border);
@@ -520,6 +597,7 @@
     .project-links {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .project-btn {
       font-size: 0.7rem;
@@ -856,165 +934,169 @@
         <div class="thin-rule"></div>
       </div>
 
-      <div class="row g-3">
+      <div class="projects-slider-wrap reveal reveal-delay-1">
+        <button class="slider-arrow slider-arrow-prev" id="projPrev" aria-label="Previous project">‹</button>
+        <button class="slider-arrow slider-arrow-next" id="projNext" aria-label="Next project">›</button>
 
-        <!-- ROW 1 -->
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
-          <div class="project-card">
-            <img src="images/projects/Anomira.png" class="project-card-img" alt="Anomira">
-            <div class="project-card-body">
-              <p class="project-tag">Data Intelligence · Web</p>
-              <h3 class="project-title">Anomira</h3>
-              <p class="project-desc">Data intelligence platform delivering smart analytics and actionable insights through an elegant web interface.</p>
-              <div class="project-links">
-                <a href="https://anomira.vercel.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+        <div class="projects-slider" id="projectsSlider">
+
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/Anomira.png" class="project-card-img" alt="Anomira">
+              <div class="project-card-body">
+                <p class="project-tag">Data Intelligence · Web</p>
+                <h3 class="project-title">Anomira</h3>
+                <p class="project-desc">Data intelligence platform delivering smart analytics and actionable insights through an elegant web interface.</p>
+                <div class="project-links">
+                  <a href="https://anomira.vercel.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
-          <div class="project-card">
-            <img src="images/projects/Statflow.png" class="project-card-img" alt="StatFlow">
-            <div class="project-card-body">
-              <p class="project-tag">Python · Streamlit</p>
-              <h3 class="project-title">StatFlow</h3>
-              <p class="project-desc">Interactive statistical analysis engine built with Streamlit, enabling seamless data exploration and flow-based analytics.</p>
-              <div class="project-links">
-                <a href="https://statengine-7mz4u6qbonxuqgye7pofp3.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/Statflow.png" class="project-card-img" alt="StatFlow">
+              <div class="project-card-body">
+                <p class="project-tag">Python · Streamlit</p>
+                <h3 class="project-title">StatFlow</h3>
+                <p class="project-desc">Interactive statistical analysis engine built with Streamlit, enabling seamless data exploration and flow-based analytics.</p>
+                <div class="project-links">
+                  <a href="https://statengine-7mz4u6qbonxuqgye7pofp3.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
-          <div class="project-card">
-            <img src="images/projects/futuristic_dashboard_no_text.jpg" class="project-card-img" alt="Global Economic & Health Insights">
-            <div class="project-card-body">
-              <p class="project-tag">Python · TensorFlow · Streamlit</p>
-              <h3 class="project-title">Global Economic & Health Insights Dashboard</h3>
-              <p class="project-desc">World Bank API data powering predictive economic and healthcare analysis with ML forecasting.</p>
-              <div class="project-links">
-                <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/futuristic_dashboard_no_text.jpg" class="project-card-img" alt="Global Economic & Health Insights">
+              <div class="project-card-body">
+                <p class="project-tag">Python · TensorFlow · Streamlit</p>
+                <h3 class="project-title">Global Economic & Health Insights Dashboard</h3>
+                <p class="project-desc">World Bank API data powering predictive economic and healthcare analysis with ML forecasting.</p>
+                <div class="project-links">
+                  <a href="https://world-economy-health-ttitbtkeusqzpvag6wpwko.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/World-Economy-Health/blob/main/globaldataapiwb.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
-          <div class="project-card">
-            <img src="images/projects/1.jpg" class="project-card-img" alt="African Economy Insights">
-            <div class="project-card-body">
-              <p class="project-tag">R · Shiny</p>
-              <h3 class="project-title">African Economy Insights Dashboard</h3>
-              <p class="project-desc">Interactive R Shiny dashboard providing key economic insights for African countries.</p>
-              <div class="project-links">
-                <a href="https://mouhamad9.shinyapps.io/afknds/" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/1.jpg" class="project-card-img" alt="African Economy Insights">
+              <div class="project-card-body">
+                <p class="project-tag">R · Shiny</p>
+                <h3 class="project-title">African Economy Insights Dashboard</h3>
+                <p class="project-desc">Interactive R Shiny dashboard providing key economic insights for African countries.</p>
+                <div class="project-links">
+                  <a href="https://mouhamad9.shinyapps.io/afknds/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/African-Economic-Insights-Dashboard/blob/main/AfricaInsights.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- ROW 2 -->
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
-          <div class="project-card">
-            <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="project-card-img" alt="Employment & Workforce Analysis">
-            <div class="project-card-body">
-              <p class="project-tag">Python · Streamlit</p>
-              <h3 class="project-title">Employment & Workforce Analysis</h3>
-              <p class="project-desc">Interactive dashboard for analyzing employment metrics across countries and regions.</p>
-              <div class="project-links">
-                <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/Employment_Workforce_Dashboard.jpg" class="project-card-img" alt="Employment & Workforce Analysis">
+              <div class="project-card-body">
+                <p class="project-tag">Python · Streamlit</p>
+                <h3 class="project-title">Employment & Workforce Analysis</h3>
+                <p class="project-desc">Interactive dashboard for analyzing employment metrics across countries and regions.</p>
+                <div class="project-links">
+                  <a href="https://employmentrates-9dc6bdb6wvbfjgxwjcmtdt.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/Employmentrates/blob/main/pythonemployment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
-          <div class="project-card">
-            <img src="images/projects/payments_growth.jpg" class="project-card-img" alt="Africa Digital Payments">
-            <div class="project-card-body">
-              <p class="project-tag">Python · Streamlit</p>
-              <h3 class="project-title">Africa's Digital Payments Growth</h3>
-              <p class="project-desc">Map dashboard showing digital payment adoption across Africa with regional forecasts.</p>
-              <div class="project-links">
-                <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/payments_growth.jpg" class="project-card-img" alt="Africa Digital Payments">
+              <div class="project-card-body">
+                <p class="project-tag">Python · Streamlit</p>
+                <h3 class="project-title">Africa's Digital Payments Growth</h3>
+                <p class="project-desc">Map dashboard showing digital payment adoption across Africa with regional forecasts.</p>
+                <div class="project-links">
+                  <a href="https://digital-growth-africa-dzswasvgqe2ytt7hdkgwvj.streamlit.app/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/Digital-Growth-Africa/blob/main/africadigitalpayment.py" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
-          <div class="project-card">
-            <img src="images/projects/2.jpg" class="project-card-img" alt="African Regional Economic Communities">
-            <div class="project-card-body">
-              <p class="project-tag">R · Shiny</p>
-              <h3 class="project-title">African Regional Economic Communities Dashboard</h3>
-              <p class="project-desc">GDP, population, and electricity access trends across African RECs.</p>
-              <div class="project-links">
-                <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/2.jpg" class="project-card-img" alt="African Regional Economic Communities">
+              <div class="project-card-body">
+                <p class="project-tag">R · Shiny</p>
+                <h3 class="project-title">African Regional Economic Communities Dashboard</h3>
+                <p class="project-desc">GDP, population, and electricity access trends across African RECs.</p>
+                <div class="project-links">
+                  <a href="https://mouhamad9.shinyapps.io/RegionAfrica/" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/AfricanRegions-Dashboard/blob/main/AfricanRegions.R" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
-          <div class="project-card">
-            <img src="images/projects/traderisk1.png" class="project-card-img" alt="International Trade Risk">
-            <div class="project-card-body">
-              <p class="project-tag">Python · Dash</p>
-              <h3 class="project-title">International Trade Risk</h3>
-              <p class="project-desc">Python Dash application to visualize and analyze global supply chain and trade risks.</p>
-              <div class="project-links">
-                <a href="https://gscr.onrender.com" class="project-btn project-btn-primary" target="_blank">Live →</a>
-                <a href="https://github.com/MouhamadBani/GSCR" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/traderisk1.png" class="project-card-img" alt="International Trade Risk">
+              <div class="project-card-body">
+                <p class="project-tag">Python · Dash</p>
+                <h3 class="project-title">International Trade Risk</h3>
+                <p class="project-desc">Python Dash application to visualize and analyze global supply chain and trade risks.</p>
+                <div class="project-links">
+                  <a href="https://gscr.onrender.com" class="project-btn project-btn-primary" target="_blank">Live →</a>
+                  <a href="https://github.com/MouhamadBani/GSCR" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- ROW 3 -->
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-1">
-          <div class="project-card">
-            <img src="images/projects/3.jpg" class="project-card-img" alt="Bank Operations Management DB">
-            <div class="project-card-body">
-              <p class="project-tag">SQL · MySQL</p>
-              <h3 class="project-title">Bank Operations Management DB</h3>
-              <p class="project-desc">Structured SQL database schema for financial tracking and operational monitoring.</p>
-              <div class="project-links">
-                <a href="images/projects/BankOpsMgtDB.png" class="project-btn project-btn-primary" target="_blank">Schema →</a>
-                <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="project-btn project-btn-secondary" target="_blank">Source</a>
+          <div class="project-slide">
+            <div class="project-card">
+              <img src="images/projects/3.jpg" class="project-card-img" alt="Bank Operations Management DB">
+              <div class="project-card-body">
+                <p class="project-tag">SQL · MySQL</p>
+                <h3 class="project-title">Bank Operations Management DB</h3>
+                <p class="project-desc">Structured SQL database schema for financial tracking and operational monitoring.</p>
+                <div class="project-links">
+                  <a href="images/projects/BankOpsMgtDB.png" class="project-btn project-btn-primary" target="_blank">Schema →</a>
+                  <a href="https://github.com/MouhamadBani/MySQLOrgDB/blob/main/DevBankDB.sql" class="project-btn project-btn-secondary" target="_blank">Source</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-2">
-          <div class="project-card-placeholder">
-            <div class="placeholder-icon">+</div>
-            <p class="placeholder-label">Coming Soon</p>
+          <div class="project-slide">
+            <div class="project-card-placeholder">
+              <div class="placeholder-icon">+</div>
+              <p class="placeholder-label">Coming Soon</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-3">
-          <div class="project-card-placeholder">
-            <div class="placeholder-icon">+</div>
-            <p class="placeholder-label">Coming Soon</p>
+          <div class="project-slide">
+            <div class="project-card-placeholder">
+              <div class="placeholder-icon">+</div>
+              <p class="placeholder-label">Coming Soon</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-3 col-sm-6 mb-2 reveal reveal-delay-4">
-          <div class="project-card-placeholder">
-            <div class="placeholder-icon">+</div>
-            <p class="placeholder-label">Coming Soon</p>
+          <div class="project-slide">
+            <div class="project-card-placeholder">
+              <div class="placeholder-icon">+</div>
+              <p class="placeholder-label">Coming Soon</p>
+            </div>
           </div>
+
         </div>
 
+        <div class="projects-progress" id="projectsProgress"></div>
       </div>
     </div>
   </section>
@@ -1256,6 +1338,89 @@
         target.setAttribute('dir', btn.dataset.dir === 'rtl' ? 'rtl' : 'ltr');
       });
     });
+
+    // ── Projects slider (infinite loop) ──
+    (function() {
+      const slider = document.getElementById('projectsSlider');
+      const prevBtn = document.getElementById('projPrev');
+      const nextBtn = document.getElementById('projNext');
+      const progressWrap = document.getElementById('projectsProgress');
+      const GAP = 20; // must match .projects-slider gap in CSS
+
+      const originalSlides = Array.from(slider.children);
+      const realCount = originalSlides.length;
+      const cloneCount = Math.min(4, realCount);
+
+      // Clone the last N slides to the front, and the first N slides to the back,
+      // so scrolling past either end lands on matching content — then we silently
+      // snap back to the equivalent real slide once the scroll settles.
+      const headFrag = document.createDocumentFragment();
+      originalSlides.slice(realCount - cloneCount).forEach(n => {
+        const clone = n.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        headFrag.appendChild(clone);
+      });
+      slider.insertBefore(headFrag, slider.firstChild);
+
+      const tailFrag = document.createDocumentFragment();
+      originalSlides.slice(0, cloneCount).forEach(n => {
+        const clone = n.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        tailFrag.appendChild(clone);
+      });
+      slider.appendChild(tailFrag);
+
+      // Build progress dots for the real slides only
+      originalSlides.forEach(() => progressWrap.appendChild(document.createElement('span')));
+      const dots = Array.from(progressWrap.children);
+
+      function step() {
+        return slider.children[0].getBoundingClientRect().width + GAP;
+      }
+      function prependWidth() { return cloneCount * step(); }
+      function realWidth() { return realCount * step(); }
+
+      // Jump to the first real slide (past the prepended clones) without animating
+      function init() {
+        slider.scrollLeft = prependWidth();
+        updateDots();
+      }
+
+      function updateDots() {
+        const s = step();
+        let idx = Math.round((slider.scrollLeft - prependWidth()) / s) % realCount;
+        if (idx < 0) idx += realCount;
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+
+      function checkWrap() {
+        const s = step();
+        const pw = prependWidth();
+        const rw = realWidth();
+        if (slider.scrollLeft < pw - s / 2) {
+          slider.scrollLeft += rw;
+        } else if (slider.scrollLeft > pw + rw - s / 2) {
+          slider.scrollLeft -= rw;
+        }
+        updateDots();
+      }
+
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -step(), behavior: 'smooth' });
+      });
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: step(), behavior: 'smooth' });
+      });
+
+      let scrollTimeout;
+      slider.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(checkWrap, 120);
+      });
+      window.addEventListener('resize', init);
+
+      init();
+    })();
   </script>
 </body>
 </html>
