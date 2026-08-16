@@ -467,7 +467,7 @@
 
     .projects-slider-wrap {
       position: relative;
-      margin: 0 -4px;
+      padding: 0 66px;
     }
     .projects-slider {
       display: flex;
@@ -523,8 +523,8 @@
       cursor: default;
       pointer-events: none;
     }
-    .slider-arrow-prev { left: -8px; }
-    .slider-arrow-next { right: -8px; }
+    .slider-arrow-prev { left: 0; }
+    .slider-arrow-next { right: 0; }
     html[data-theme="light"] .slider-arrow {
       background: rgba(255,255,255,0.9);
       border-color: var(--green);
@@ -554,6 +554,7 @@
     }
     @media (max-width: 640px) {
       .slider-arrow { display: none; }
+      .projects-slider-wrap { padding: 0; }
       .project-slide { width: 78vw; }
     }
 
@@ -1438,7 +1439,7 @@
       window.addEventListener('resize', init);
 
       // ── Autoplay ──
-      const AUTOPLAY_DELAY = 3200;
+      const AUTOPLAY_DELAY = 7000;
       const wrap = slider.closest('.projects-slider-wrap');
       let autoplayId = null;
 
