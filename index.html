@@ -492,34 +492,50 @@
       position: absolute;
       top: 42%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--surface-2);
+      border: 1.5px solid var(--gold);
+      background: rgba(24,28,25,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: var(--gold-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.7rem;
       line-height: 1;
       cursor: pointer;
       z-index: 5;
       transition: all 0.25s ease;
-      box-shadow: var(--shadow-card);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45), 0 0 0 4px rgba(201,151,43,0.1);
     }
     .slider-arrow:hover {
       border-color: var(--gold);
       background: var(--gold);
       color: #0C0E0D;
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5), 0 0 0 6px rgba(201,151,43,0.16);
     }
+    .slider-arrow:active { transform: translateY(-50%) scale(0.96); }
     .slider-arrow:disabled {
       opacity: 0.3;
       cursor: default;
       pointer-events: none;
     }
-    .slider-arrow-prev { left: -14px; }
-    .slider-arrow-next { right: -14px; }
+    .slider-arrow-prev { left: -8px; }
+    .slider-arrow-next { right: -8px; }
+    html[data-theme="light"] .slider-arrow {
+      background: rgba(255,255,255,0.9);
+      border-color: var(--green);
+      color: var(--green);
+      box-shadow: 0 10px 28px rgba(10,20,14,0.18), 0 0 0 4px rgba(20,92,62,0.08);
+    }
+    html[data-theme="light"] .slider-arrow:hover {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
     .projects-progress {
       display: flex;
       justify-content: center;
@@ -1407,9 +1423,11 @@
 
       prevBtn.addEventListener('click', () => {
         slider.scrollBy({ left: -step(), behavior: 'smooth' });
+        restartAutoplay();
       });
       nextBtn.addEventListener('click', () => {
         slider.scrollBy({ left: step(), behavior: 'smooth' });
+        restartAutoplay();
       });
 
       let scrollTimeout;
@@ -1419,7 +1437,37 @@
       });
       window.addEventListener('resize', init);
 
+      // ── Autoplay ──
+      const AUTOPLAY_DELAY = 3200;
+      const wrap = slider.closest('.projects-slider-wrap');
+      let autoplayId = null;
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayId = setInterval(() => {
+          slider.scrollBy({ left: step(), behavior: 'smooth' });
+        }, AUTOPLAY_DELAY);
+      }
+      function stopAutoplay() {
+        if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
+      }
+      function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      wrap.addEventListener('mouseenter', stopAutoplay);
+      wrap.addEventListener('mouseleave', startAutoplay);
+      wrap.addEventListener('touchstart', stopAutoplay, { passive: true });
+      wrap.addEventListener('touchend', () => setTimeout(startAutoplay, 2500), { passive: true });
+      wrap.addEventListener('focusin', stopAutoplay);
+      wrap.addEventListener('focusout', startAutoplay);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoplay(); else startAutoplay();
+      });
+
       init();
+      startAutoplay();
     })();
   </script>
 </body>
