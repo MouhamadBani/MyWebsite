@@ -251,10 +251,13 @@
     }
     .hero-eyebrow {
       font-size: 0.72rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 24px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.3s forwards;
     }
@@ -281,20 +284,14 @@
       animation: fadeUp 0.9s ease 0.7s forwards;
     }
     .hero-subtitle {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       font-weight: 300;
-      min-height: 1.6em;
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.7;
       opacity: 0;
       animation: fadeUp 0.9s ease 0.9s forwards;
-    }
-    .hero-subtitle .cursor {
-      display: inline-block;
-      width: 2px; height: 1em;
-      background: var(--gold);
-      margin-left: 3px;
-      vertical-align: middle;
-      animation: blink 0.8s infinite;
     }
     .hero-cta {
       margin-top: 48px;
@@ -881,13 +878,15 @@
     <div class="hero-glow-left"></div>
     <div class="hero-glow-right"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow"> M M B</p>
+      <p class="hero-eyebrow">Graduate Research Assistant · North Dakota State University</p>
       <h1 class="hero-name">
         Mouhamad <span>M. Bani</span>
       </h1>
       <div class="hero-divider"></div>
       <p class="hero-subtitle">
-        <span id="typed-text"></span><span class="cursor"></span>
+        PhD Student in Transportation & Supply Chain<br>
+        Master of Business Administration<br>
+        Bachelor of Science in Statistics
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn-gold">View Projects</a>
@@ -1235,38 +1234,6 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
-
-    // ── Typing animation ──
-    const texts = [
-      "PhD Student, Transportation & Supply Chain",
-      "Graduate Research Assistant, NDSU",
-      "MBA, Information Systems Management",
-      "BSc in Statistics"
-    ];
-    let tIdx = 0, cIdx = 0, deleting = false;
-    const el = document.getElementById("typed-text");
-
-    function type() {
-      const current = texts[tIdx % texts.length];
-      el.textContent = current.substring(0, cIdx);
-      if (!deleting) {
-        cIdx++;
-        if (cIdx > current.length) {
-          deleting = true;
-          setTimeout(type, 1400);
-          return;
-        }
-      } else {
-        cIdx--;
-        if (cIdx < 0) {
-          deleting = false;
-          tIdx++;
-          cIdx = 0;
-        }
-      }
-      setTimeout(type, deleting ? 40 : 85);
-    }
-    document.addEventListener("DOMContentLoaded", type);
 
     // ── Particle canvas ──
     const canvas = document.getElementById('hero-canvas');
