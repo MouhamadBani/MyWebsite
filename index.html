@@ -561,7 +561,7 @@
 
     .projects-slider-wrap {
       position: relative;
-      padding: 0 66px;
+      padding: 0 88px;
     }
     .projects-slider {
       display: flex;
@@ -579,7 +579,7 @@
     .projects-slider::-webkit-scrollbar { display: none; height: 0; }
     .project-slide {
       flex: 0 0 auto;
-      width: 258px;
+      width: 420px;
       scroll-snap-align: start;
     }
     .slider-arrow {
@@ -617,8 +617,8 @@
       cursor: default;
       pointer-events: none;
     }
-    .slider-arrow-prev { left: 0; }
-    .slider-arrow-next { right: 0; }
+    .slider-arrow-prev { left: 6px; }
+    .slider-arrow-next { right: 6px; }
     html[data-theme="light"] .slider-arrow {
       background: rgba(255,255,255,0.9);
       border-color: var(--green);
@@ -634,24 +634,43 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 7px;
-      margin: 24px 0 40px;
+      gap: 8px;
+      margin: 24px 0 48px;
     }
-    .projects-progress span {
+    .projects-progress button {
+      -webkit-appearance: none;
+      appearance: none;
+      border: none;
+      background: none;
+      padding: 6px 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .projects-progress button span {
+      display: block;
       width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--border);
       transition: all 0.35s cubic-bezier(.2,.8,.2,1);
     }
-    .projects-progress span.active {
-      width: 22px;
+    .projects-progress button:hover span {
+      background: var(--gold-light);
+      transform: scale(1.3);
+    }
+    .projects-progress button.active span {
+      width: 24px;
       border-radius: 4px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: none;
     }
     @media (max-width: 640px) {
       .slider-arrow { display: none; }
       .projects-slider-wrap { padding: 0; }
-      .project-slide { width: 62vw; }
+      .project-slide { width: 84vw; }
+      .project-card { flex-direction: column; height: auto; }
+      .project-card-img-wrap { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+      .project-card-body { justify-content: flex-start; }
     }
 
     .project-card {
@@ -659,10 +678,10 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
-      height: 100%;
+      height: 196px;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
     }
     .project-card:hover {
       transform: translateY(-4px);
@@ -671,8 +690,9 @@
     }
     .project-card-img-wrap {
       position: relative;
-      width: 100%;
-      aspect-ratio: 6 / 6.4;
+      width: 40%;
+      flex-shrink: 0;
+      height: 100%;
       overflow: hidden;
       background: var(--surface-3);
     }
@@ -690,10 +710,12 @@
       transform: scale(1.05);
     }
     .project-card-body {
-      padding: 18px 20px 20px;
+      padding: 20px 22px;
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
     .project-tag {
       font-size: 0.6rem;
@@ -704,17 +726,16 @@
     }
     .project-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #fff;
-      line-height: 1.3;
+      line-height: 1.28;
       margin-bottom: 9px;
     }
     .project-desc {
       font-size: 0.8rem;
       color: var(--text-muted);
-      line-height: 1.62;
-      flex: 1;
+      line-height: 1.6;
       margin-bottom: 14px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -752,7 +773,7 @@
       border: 1px dashed rgba(201,151,43,0.25);
       border-radius: 8px;
       height: 100%;
-      min-height: 450px;
+      min-height: 196px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1503,8 +1524,14 @@
       });
       slider.appendChild(tailFrag);
 
-      // Build progress dots for the real slides only
-      originalSlides.forEach(() => progressWrap.appendChild(document.createElement('span')));
+      // Build progress dots for the real slides only (clickable buttons)
+      originalSlides.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', `Go to project ${i + 1}`);
+        btn.innerHTML = '<span></span>';
+        progressWrap.appendChild(btn);
+      });
       const dots = Array.from(progressWrap.children);
 
       function step() {
@@ -1525,6 +1552,13 @@
         if (idx < 0) idx += realCount;
         dots.forEach((d, i) => d.classList.toggle('active', i === idx));
       }
+
+      dots.forEach((d, i) => {
+        d.addEventListener('click', () => {
+          slider.scrollTo({ left: prependWidth() + i * step(), behavior: 'smooth' });
+          restartAutoplay();
+        });
+      });
 
       function checkWrap() {
         const s = step();
