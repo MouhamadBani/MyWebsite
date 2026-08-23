@@ -732,6 +732,42 @@
       background: rgba(201,151,43,0.08);
     }
 
+    /* ─── SKILLS (minimal list) ─── */
+    .skills-list {
+      max-width: 720px;
+    }
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px 32px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-row:first-child { padding-top: 0; }
+    .skills-row:last-child { border-bottom: none; }
+    .skills-row-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      flex: 0 0 auto;
+      min-width: 220px;
+    }
+    .skills-row-tools {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      text-align: right;
+      flex: 1 1 260px;
+    }
+    html[data-theme="light"] .skills-row-title { color: #101210; }
+    @media (max-width: 576px) {
+      .skills-row { flex-direction: column; gap: 6px; }
+      .skills-row-tools { text-align: left; }
+    }
+
     /* ─── FOOTER / CONTACT ─── */
     #contact {
       background: var(--surface-2);
@@ -879,7 +915,7 @@
     <div class="hero-glow-left"></div>
     <div class="hero-glow-right"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow"> Graduate Research Assistant - North Dakota State University</p>
+      <p class="hero-eyebrow"> M M B</p>
       <h1 class="hero-name">
         Mouhamad <span>M. Bani</span>
       </h1>
@@ -1128,58 +1164,23 @@
         <h2 class="section-heading">Skills & <em>Toolset</em></h2>
         <div class="thin-rule"></div>
       </div>
-      <div class="row g-4">
-
-        <div class="col-md-6 reveal reveal-delay-1">
-          <div class="skill-card">
-            <h4 class="skill-title">Data Science & Statistical Analysis</h4>
-            <div class="skill-tools">
-              <span class="skill-tool">Python</span>
-              <span class="skill-tool">R</span>
-              <span class="skill-tool">SAS</span>
-              <span class="skill-tool">MySQL</span>
-            </div>
-          </div>
+      <div class="skills-list reveal reveal-delay-1">
+        <div class="skills-row">
+          <h4 class="skills-row-title">Data Science & Statistical Analysis</h4>
+          <p class="skills-row-tools">Python · R · SAS · MySQL</p>
         </div>
-
-        <div class="col-md-6 reveal reveal-delay-2">
-          <div class="skill-card">
-            <h4 class="skill-title">Business Intelligence & Reporting</h4>
-            <div class="skill-tools">
-              <span class="skill-tool">SAP</span>
-              <span class="skill-tool">Power BI</span>
-              <span class="skill-tool">Tableau</span>
-              <span class="skill-tool">Excel</span>
-            </div>
-          </div>
+        <div class="skills-row">
+          <h4 class="skills-row-title">Business Intelligence & Reporting</h4>
+          <p class="skills-row-tools">SAP · Power BI · Tableau · Excel</p>
         </div>
-
-        <div class="col-md-6 reveal reveal-delay-3">
-          <div class="skill-card">
-            <h4 class="skill-title">Data Visualization & Web Apps</h4>
-            <div class="skill-tools">
-              <span class="skill-tool">Streamlit</span>
-              <span class="skill-tool">R Shiny</span>
-              <span class="skill-tool">Plotly Dash</span>
-              <span class="skill-tool">Excel</span>
-            </div>
-          </div>
+        <div class="skills-row">
+          <h4 class="skills-row-title">Data Visualization & Web Apps</h4>
+          <p class="skills-row-tools">Streamlit · R Shiny · Plotly Dash · Excel</p>
         </div>
-
-        <div class="col-md-6 reveal reveal-delay-4">
-          <div class="skill-card">
-            <h4 class="skill-title">Web Development & Programming</h4>
-            <div class="skill-tools">
-              <span class="skill-tool">C++</span>
-              <span class="skill-tool">HTML</span>
-              <span class="skill-tool">CSS</span>
-              <span class="skill-tool">JavaScript</span>
-              <span class="skill-tool">Vite</span>
-              <span class="skill-tool">Next.js</span>
-            </div>
-          </div>
+        <div class="skills-row">
+          <h4 class="skills-row-title">Web Development & Programming</h4>
+          <p class="skills-row-tools">C++ · HTML · CSS · JavaScript · Vite · Next.js</p>
         </div>
-
       </div>
     </div>
   </section>
@@ -1237,8 +1238,9 @@
     // ── Typing animation ──
     const texts = [
       "PhD Student, Transportation & Supply Chain",
-      "Master of Business Administration",
-      "Bachelor of Science in Statistics"
+      "Graduate Research Assistant, NDSU",
+      "MBA, Information Systems Management",
+      "BSc in Statistics"
     ];
     let tIdx = 0, cIdx = 0, deleting = false;
     const el = document.getElementById("typed-text");
