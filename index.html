@@ -579,7 +579,7 @@
     .projects-slider::-webkit-scrollbar { display: none; height: 0; }
     .project-slide {
       flex: 0 0 auto;
-      width: 236px;
+      width: 258px;
       scroll-snap-align: start;
     }
     .slider-arrow {
@@ -634,7 +634,7 @@
       display: flex;
       justify-content: center;
       gap: 6px;
-      margin-top: 4px;
+      margin-top: 22px;
     }
     .projects-progress span {
       width: 6px; height: 6px;
@@ -670,7 +670,7 @@
     .project-card-img-wrap {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 5 / 6;
       overflow: hidden;
       background: var(--surface-3);
     }
@@ -678,19 +678,17 @@
       display: block;
       width: 100%;
       height: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       filter: var(--img-filter-2);
       transition: filter 0.3s ease, transform 0.4s ease;
     }
     .project-card:hover .project-card-img {
       filter: var(--img-filter-2-hover);
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
     .project-card-body {
-      padding: 18px 18px 20px;
+      padding: 22px 20px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -700,24 +698,24 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 7px;
+      margin-bottom: 9px;
     }
     .project-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.08rem;
+      font-size: 1.18rem;
       font-weight: 600;
       color: #fff;
-      line-height: 1.28;
-      margin-bottom: 8px;
+      line-height: 1.32;
+      margin-bottom: 11px;
     }
     .project-desc {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.68;
       flex: 1;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -752,7 +750,7 @@
       border: 1px dashed rgba(201,151,43,0.25);
       border-radius: 8px;
       height: 100%;
-      min-height: 400px;
+      min-height: 520px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1078,6 +1076,7 @@
         <p class="section-label">Selected Work</p>
         <h2 class="section-heading">Projects & <em>Dashboards</em></h2>
         <div class="thin-rule"></div>
+        <div class="projects-progress" id="projectsProgress"></div>
       </div>
 
       <div class="projects-slider-wrap reveal reveal-delay-1">
@@ -1258,7 +1257,7 @@
             </div>
           </div>
 
-        <div class="projects-progress" id="projectsProgress"></div>
+        </div>
       </div>
     </div>
   </section>
