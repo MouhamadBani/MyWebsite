@@ -77,7 +77,6 @@
     html[data-theme="light"] .hero-divider { background: linear-gradient(to right, transparent, var(--gold-pale), transparent); }
     html[data-theme="light"] .section-heading { color: #101210; }
     html[data-theme="light"] .project-title { color: #101210; }
-    html[data-theme="light"] .skill-title { color: #101210; }
     html[data-theme="light"] .about-photo-wrap::before { border-color: var(--green); }
     html[data-theme="light"] .about-photo-wrap::after { background: var(--gold); opacity: 0.2; }
     html[data-theme="light"] .about-photo { filter: var(--img-filter-1); }
@@ -93,16 +92,11 @@
     html[data-theme="light"] .navbar.scrolled { background: rgba(247,248,246,0.94); box-shadow: 0 2px 24px rgba(10,20,14,0.08); }
     html[data-theme="light"] .nav-link:hover { color: var(--green) !important; }
     html[data-theme="light"] .nav-link::after { background: var(--green); }
-    html[data-theme="light"] .skill-tool { background: rgba(184,134,11,0.05); border-color: rgba(20,92,62,0.24); color: var(--text-muted); }
-    html[data-theme="light"] .skill-tool:hover { background: rgba(20,92,62,0.1); color: var(--green); border-color: var(--green); }
-    html[data-theme="light"] .skill-card::after { background: linear-gradient(to right, var(--green), var(--gold)); }
     html[data-theme="light"] .placeholder-icon { color: var(--green); border-color: rgba(20,92,62,0.4); }
     html[data-theme="light"] .placeholder-label { color: var(--text-dim); }
     html[data-theme="light"] .project-card-placeholder { border-color: rgba(20,92,62,0.32); }
     html[data-theme="light"] .project-btn-secondary { color: var(--text-muted); }
     html[data-theme="light"] .project-btn-secondary:hover { color: var(--green); border-color: var(--green); }
-    html[data-theme="light"] .contact-email-block:hover .contact-email-text { color: var(--green); }
-    html[data-theme="light"] .contact-email-block:hover .contact-email-text { border-bottom-color: var(--green); }
     html[data-theme="light"] .theme-toggle { background: rgba(184,134,11,0.07); border-color: var(--border); }
     html[data-theme="light"] .theme-toggle:hover { border-color: var(--green); }
     html[data-theme="light"] .theme-toggle svg { stroke: var(--green); }
@@ -115,7 +109,6 @@
     html[data-theme="light"] .section-label { color: var(--green); }
     html[data-theme="light"] .section-heading em { color: var(--gold-pale); font-style: italic; }
     html[data-theme="light"] .thin-rule { background: var(--gold-pale); }
-    html[data-theme="light"] .skill-card:hover { border-color: var(--green); }
     html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--gold-pale); }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -670,151 +663,96 @@
 
     /* ─── SKILLS ─── */
     #skills { background: var(--surface); }
-    .skill-card {
-      background: var(--surface-3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 32px 24px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background-color 0.35s;
-      position: relative;
-      overflow: hidden;
-    }
-    .skill-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(to right, var(--green), var(--gold));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-    .skill-card:hover {
-      border-color: rgba(201,151,43,0.4);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-card);
-    }
-    .skill-card:hover::after { transform: scaleX(1); }
-    .skill-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.3;
-    }
-    .skill-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-    }
-    .skill-tool {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      padding: 5px 14px;
-      border: 1px solid rgba(201,151,43,0.2);
-      border-radius: 20px;
-      color: var(--text-muted);
-      background: rgba(255,255,255,0.03);
-      transition: all 0.2s;
-    }
-    .skill-tool:hover {
-      border-color: var(--gold);
-      color: var(--gold-light);
-      background: rgba(201,151,43,0.08);
-    }
 
-    /* ─── SKILLS (minimal list) ─── */
-    .skills-list {
-      max-width: 720px;
+    /* ─── SKILLS (compact grid) ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 48px;
+      max-width: 760px;
     }
-    .skills-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px 32px;
-      padding: 26px 0;
+    .skills-item {
+      padding: 16px 0;
       border-bottom: 1px solid var(--border);
     }
-    .skills-row:first-child { padding-top: 0; }
-    .skills-row:last-child { border-bottom: none; }
-    .skills-row-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--text);
-      flex: 0 0 auto;
-      min-width: 220px;
-    }
-    .skills-row-tools {
-      font-size: 0.82rem;
-      color: var(--text-muted);
+    .skills-item:nth-last-child(-n+2) { border-bottom: none; }
+    .skills-item-title {
+      font-size: 0.85rem;
+      font-weight: 600;
       letter-spacing: 0.02em;
-      text-align: right;
-      flex: 1 1 260px;
+      color: var(--text);
+      margin-bottom: 5px;
     }
-    html[data-theme="light"] .skills-row-title { color: #101210; }
+    .skills-item-tools {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+    html[data-theme="light"] .skills-item-title { color: #101210; }
     @media (max-width: 576px) {
-      .skills-row { flex-direction: column; gap: 6px; }
-      .skills-row-tools { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr; gap: 0; }
+      .skills-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .skills-item:last-child { border-bottom: none; }
     }
 
     /* ─── FOOTER / CONTACT ─── */
     #contact {
       background: var(--surface-2);
       border-top: 1px solid var(--border);
-      padding: 80px 0;
+      padding: 64px 0;
     }
     .contact-wrapper {
-      max-width: 560px;
+      max-width: 480px;
       margin: 0 auto;
       text-align: center;
     }
-    .contact-wrapper .section-label { margin-bottom: 8px; }
-    .contact-wrapper .section-heading { font-size: 2.2rem; margin-bottom: 12px; }
+    .contact-wrapper .section-label { margin-bottom: 6px; }
+    .contact-wrapper .section-heading { font-size: 1.85rem; margin-bottom: 10px; }
     .contact-wrapper .contact-tagline {
       color: var(--text-muted);
-      font-size: 0.88rem;
-      line-height: 1.75;
-      margin-bottom: 14px;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      margin-bottom: 24px;
     }
     .contact-email-block {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       text-decoration: none;
+      padding: 12px 26px;
+      border-radius: 30px;
+      background: var(--green);
+      border: 1px solid var(--green-mid);
       transition: all 0.25s ease;
     }
-    .contact-email-block:hover .contact-email-text { color: var(--gold-light); }
-    .contact-email-icon { display: none; }
-    .contact-email-text {
-      font-size: 0.88rem;
-      font-weight: 400;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: all 0.25s;
+    .contact-email-block:hover {
+      background: var(--green-mid);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
     }
-    .contact-email-block:hover .contact-email-text {
-      border-bottom-color: var(--gold);
+    .contact-email-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px; height: 15px;
+      flex-shrink: 0;
+    }
+    .contact-email-icon svg { width: 100%; height: 100%; stroke: #fff; }
+    .contact-email-text {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.02em;
+      border-bottom: none;
+      padding-bottom: 0;
     }
     .footer-bottom {
-      margin-top: 40px;
-      padding-top: 24px;
+      margin-top: 32px;
+      padding-top: 18px;
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--text-dim);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       letter-spacing: 0.08em;
     }
     .footer-bottom span { color: var(--gold); }
@@ -1164,22 +1102,22 @@
         <h2 class="section-heading">Skills & <em>Toolset</em></h2>
         <div class="thin-rule"></div>
       </div>
-      <div class="skills-list reveal reveal-delay-1">
-        <div class="skills-row">
-          <h4 class="skills-row-title">Data Science & Statistical Analysis</h4>
-          <p class="skills-row-tools">Python · R · SAS · MySQL</p>
+      <div class="skills-grid reveal reveal-delay-1">
+        <div class="skills-item">
+          <p class="skills-item-title">Data Science & Statistical Analysis</p>
+          <p class="skills-item-tools">Python · R · SAS · MySQL</p>
         </div>
-        <div class="skills-row">
-          <h4 class="skills-row-title">Business Intelligence & Reporting</h4>
-          <p class="skills-row-tools">SAP · Power BI · Tableau · Excel</p>
+        <div class="skills-item">
+          <p class="skills-item-title">Business Intelligence & Reporting</p>
+          <p class="skills-item-tools">SAP · Power BI · Tableau · Excel</p>
         </div>
-        <div class="skills-row">
-          <h4 class="skills-row-title">Data Visualization & Web Apps</h4>
-          <p class="skills-row-tools">Streamlit · R Shiny · Plotly Dash · Excel</p>
+        <div class="skills-item">
+          <p class="skills-item-title">Data Visualization & Web Apps</p>
+          <p class="skills-item-tools">Streamlit · R Shiny · Plotly Dash · Excel</p>
         </div>
-        <div class="skills-row">
-          <h4 class="skills-row-title">Web Development & Programming</h4>
-          <p class="skills-row-tools">C++ · HTML · CSS · JavaScript · Vite · Next.js</p>
+        <div class="skills-item">
+          <p class="skills-item-title">Web Development & Programming</p>
+          <p class="skills-item-tools">C++ · HTML · CSS · JavaScript · Vite · Next.js</p>
         </div>
       </div>
     </div>
@@ -1195,7 +1133,13 @@
         <h2 class="section-heading">Let's <em>connect</em></h2>
         <p class="contact-tagline">Open to collaboration, data projects, and new opportunities.</p>
         <a href="mailto:mouhamad.bani@ndus.edu" class="contact-email-block">
-          <div class="contact-email-icon">✉</div>
+          <span class="contact-email-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z" opacity="0"></path>
+              <path d="M3 6.5h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-11z"></path>
+              <path d="M3 6.5l9 6.5 9-6.5"></path>
+            </svg>
+          </span>
           <span class="contact-email-text">mouhamad.bani@ndus.edu</span>
         </a>
       </div>
