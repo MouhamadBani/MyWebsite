@@ -833,86 +833,88 @@
       .skills-grid { grid-template-columns: 1fr; }
     }
 
-    /* ─── SKILLS (fancy cards, one line) ─── */
+    /* ─── SKILLS (logo tiles) ─── */
+    #skills { padding: 64px 0; }
+    #skills .thin-rule { margin: 14px 0 26px; }
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(9, minmax(0, 1fr));
-      gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px;
     }
-    @media (max-width: 991px) { .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (max-width: 560px) { .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     .skill-card {
       --mx: 50%; --my: 50%;
       position: relative;
-      padding: 24px 8px 18px;
-      border-radius: 14px;
-      text-align: center;
-      background: linear-gradient(160deg, var(--surface-3), var(--surface-2));
-      border: 1px solid var(--border);
-      overflow: hidden;
-      isolation: isolate;
-      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.35s ease, box-shadow 0.35s ease;
-    }
-    .skill-card::before {
-      content: '';
-      position: absolute; inset: 0; z-index: -1;
-      background: radial-gradient(180px circle at var(--mx) var(--my), rgba(201,151,43,0.2), transparent 65%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-    .skill-card::after {
-      content: '';
-      position: absolute; left: 18%; right: 18%; top: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-      transform: scaleX(0.3); opacity: 0.55;
-      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s ease;
+      width: 60px; height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: #F7F8F6;
+      border: 1px solid rgba(201,151,43,0.45);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      cursor: default;
+      transition: transform 0.3s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .skill-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px) scale(1.06);
       border-color: var(--gold);
-      box-shadow: var(--shadow-card), 0 0 0 1px rgba(201,151,43,0.2), 0 18px 40px rgba(201,151,43,0.12);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.3), 0 8px 24px rgba(201,151,43,0.3);
     }
-    .skill-card:hover::before { opacity: 1; }
-    .skill-card:hover::after { transform: scaleX(1); opacity: 1; }
     .skill-icon {
-      width: 62px; height: 52px;
-      margin: 0 auto 14px;
-      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      background: #F7F8F6;
-      border: 1px solid rgba(201,151,43,0.4);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
+      background: none; border: 0; box-shadow: none;
+      width: auto; height: auto;
     }
-    .skill-icon svg { width: 34px; height: 30px; display: block; }
+    .skill-icon svg { width: 34px; height: 32px; display: block; }
     .skill-text-logo {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0;
       color: #0B6BAE;
     }
-    .skill-card:hover .skill-icon {
-      transform: scale(1.1) rotate(-4deg);
-      box-shadow: 0 10px 24px rgba(201,151,43,0.4);
-    }
+    /* names stay available to screen readers, shown as a tooltip on hover */
     .skill-name {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: var(--text);
+      position: absolute;
+      width: 1px; height: 1px;
+      margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0);
       white-space: nowrap;
     }
-    .skills-grid.visible .skill-card { animation: fadeUp 0.7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
-    html[data-theme="light"] .skill-card::before { background: radial-gradient(180px circle at var(--mx) var(--my), rgba(20,92,62,0.14), transparent 65%); }
-    html[data-theme="light"] .skill-card:hover { border-color: var(--green); box-shadow: var(--shadow-card), 0 18px 40px rgba(20,92,62,0.14); }
-    html[data-theme="light"] .skill-card::after { background: linear-gradient(90deg, transparent, var(--green-bright), transparent); }
-    html[data-theme="light"] .skill-icon { background: #fff; border-color: rgba(20,92,62,0.3); box-shadow: 0 4px 14px rgba(10,20,14,0.1); }
-    html[data-theme="light"] .skill-card:hover .skill-icon { box-shadow: 0 10px 24px rgba(20,92,62,0.3); }
-    html[data-theme="light"] .skill-name { color: #101210; }
+    .skill-card::after {
+      content: attr(data-name);
+      position: absolute;
+      left: 50%; bottom: calc(100% + 10px);
+      transform: translate(-50%, 4px);
+      padding: 5px 11px;
+      border-radius: 6px;
+      background: #0C0E0D;
+      color: var(--gold-light);
+      border: 1px solid rgba(201,151,43,0.4);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 5;
+    }
+    .skill-card:hover::after, .skill-card:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+    .skills-grid.visible .skill-card { animation: fadeUp 0.6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 55ms + 120ms); }
+    html[data-theme="light"] .skill-card { background: #fff; border-color: rgba(20,92,62,0.3); box-shadow: 0 4px 14px rgba(10,20,14,0.1); }
+    html[data-theme="light"] .skill-card:hover { border-color: var(--green); box-shadow: 0 10px 24px rgba(10,20,14,0.16), 0 8px 24px rgba(20,92,62,0.25); }
+    html[data-theme="light"] .skill-card::after { background: var(--green); color: #fff; border-color: var(--green); }
+    @media (max-width: 768px) {
+      #skills { padding: 48px 0; }
+      .skills-grid { gap: 10px; }
+      .skill-card { width: 54px; height: 54px; border-radius: 14px; }
+      .skill-icon svg { width: 30px; height: 28px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .skills-grid.visible .skill-card { animation: none; }
-      .skill-card, .skill-icon { transition: none; }
+      .skill-card { transition: none; }
     }
 
     /* ─── FOOTER / CONTACT ─── */
@@ -1362,39 +1364,39 @@
         <div class="thin-rule"></div>
       </div>
       <div class="skills-grid reveal reveal-delay-1" id="skillsGrid">
-        <div class="skill-card" style="--i:0">
+        <div class="skill-card" data-name="Python" aria-label="Python" style="--i:0">
           <div class="skill-icon"><svg viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="SVGg39WleeP" x1="12.959%" x2="79.639%" y1="12.039%" y2="78.201%"><stop offset="0%" stop-color="#387eb8"/><stop offset="100%" stop-color="#366994"/></linearGradient><linearGradient id="SVGlXoRkc4T" x1="19.128%" x2="90.742%" y1="20.579%" y2="88.429%"><stop offset="0%" stop-color="#ffe052"/><stop offset="100%" stop-color="#ffc331"/></linearGradient></defs><path fill="url(#SVGg39WleeP)" d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072M92.802 19.66a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.13"/><path fill="url(#SVGlXoRkc4T)" d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897m34.114-19.586a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.131a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13"/></svg></div>
           <p class="skill-name">Python</p>
         </div>
-        <div class="skill-card" style="--i:1">
+        <div class="skill-card" data-name="R" aria-label="R" style="--i:1">
           <div class="skill-icon"><svg viewBox="0 0 256 193" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="SVGfgUN50Ex" x1="37.973%" x2="91.121%" y1="16.999%" y2="76.326%"><stop offset="0%" stop-color="#c9cbce"/><stop offset="100%" stop-color="#7b7a81"/></linearGradient></defs><path fill="url(#SVGfgUN50Ex)" d="M149.333 149.333c-53.333 0-98.659-26.713-98.659-58.713S90.667 32 144 32c67.357 0 98.572 25.911 98.572 57.911s-34.407 59.422-93.239 59.422M128 0C58.667 0 0 37.333 0 85.333c0 45.334 58.312 82.969 127.646 82.969c69.333 0 128.354-34.969 128.354-82.969S197.333 0 128 0"/><path fill="#2165b6" d="M105.946 51.829v141.109h42.643v-54.875c10.661 0 17.011-2.328 23.986 10.452c10.661 18.292 23.987 44.423 23.987 44.423H247.2s-31.982-52.262-34.647-54.875c-4.915-5.227-10.661-5.227-18.656-7.84c15.991-2.613 30.899-9.248 36.082-23.464c4.531-13.065 3.998-29.685-5.714-40.83c-8.411-8.819-17.042-14.1-38.364-14.1zm42.643 29.388h27.984c6.636 0 11.993 6.533 11.993 13.065c0 6.533-5.33 13.066-11.993 13.066h-27.984z"/></svg></div>
           <p class="skill-name">R</p>
         </div>
-        <div class="skill-card" style="--i:2">
+        <div class="skill-card" data-name="SAS" aria-label="SAS" style="--i:2">
           <div class="skill-icon"><span class="skill-text-logo">SAS</span></div>
           <p class="skill-name">SAS</p>
         </div>
-        <div class="skill-card" style="--i:3">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0B6BAE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg></div>
+        <div class="skill-card" data-name="SQL" aria-label="SQL" style="--i:3">
+          <div class="skill-icon"><span class="skill-text-logo">SQL</span></div>
           <p class="skill-name">SQL</p>
         </div>
-        <div class="skill-card" style="--i:4">
+        <div class="skill-card" data-name="SAP" aria-label="SAP" style="--i:4">
           <div class="skill-icon"><svg viewBox="0 0 512 254" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="SVGG66mF8Jd" x1="50%" x2="50%" y1="0%" y2="100.002%"><stop offset="0%" stop-color="#00aeef"/><stop offset="21.2%" stop-color="#0097dc"/><stop offset="51.9%" stop-color="#007cc5"/><stop offset="79.2%" stop-color="#006cb8"/><stop offset="100%" stop-color="#0066b3"/></linearGradient></defs><path fill="url(#SVGG66mF8Jd)" d="M0 253.281h258.764L512 0H0z"/><path fill="#fff" d="M303.848 50.656H253.28l.17 118.93l-44.032-118.975h-43.66l-37.587 99.36c-3.996-25.283-30.135-34.007-50.702-40.542c-13.581-4.362-27.996-10.779-27.85-17.87c.113-5.82 7.712-11.218 22.813-10.413c10.131.546 19.08 1.362 36.883 9.962l17.505-30.506c-16.233-8.263-38.679-13.48-57.084-13.497h-.113c-21.461 0-39.331 6.95-50.408 18.405C11.493 73.502 7.328 83.667 7.16 94.907c-.282 15.467 5.386 26.432 17.296 35.195c10.064 7.374 22.936 12.158 34.277 15.67c13.987 4.334 25.413 8.105 25.272 16.131c-.112 2.927-1.216 5.662-3.32 7.869c-3.49 3.602-8.837 4.953-16.239 5.1c-14.28.303-24.86-1.943-41.724-11.91l-15.574 30.9c16.846 9.58 34.728 14.386 55.047 14.386l4.57-.034c17.685-.32 32.037-4.559 43.44-13.733c.654-.524 1.239-1.053 1.847-1.588l-1.914 9.862l42.664-.135l7.655-19.599c8.048 2.747 17.2 4.267 26.915 4.267c9.467 0 18.371-1.441 26.268-4.03l5.336 19.362l76.547.073l.186-44.68h16.289c39.371 0 62.645-20.037 62.645-53.639c-.013-37.423-22.638-53.723-70.795-53.723zM187.372 152.318c-5.882 0-11.398-1.025-16.142-2.826l15.962-50.403h.31l15.703 50.544c-4.728 1.689-10.115 2.685-15.839 2.685zm119.436-28.959h-11.11V82.74h11.116c14.803 0 26.623 4.93 26.623 20.048c-.013 15.647-11.82 20.572-26.623 20.572"/></svg></div>
           <p class="skill-name">SAP</p>
         </div>
-        <div class="skill-card" style="--i:5">
+        <div class="skill-card" data-name="Power BI" aria-label="Power BI" style="--i:5">
           <div class="skill-icon"><svg viewBox="0 0 256 342" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="SVGCdghnblF" x1="42.593%" x2="57.245%" y1="0%" y2="93.174%"><stop offset="0%" stop-color="#e6ad10"/><stop offset="100%" stop-color="#c87e0e"/></linearGradient><linearGradient id="SVG5tapKdof" x1="40.122%" x2="62.028%" y1="0%" y2="95.592%"><stop offset="0%" stop-color="#f6d751"/><stop offset="100%" stop-color="#e6ad10"/></linearGradient><linearGradient id="SVGRvjwscVp" x1="27.774%" x2="55.012%" y1="0%" y2="96.828%"><stop offset="0%" stop-color="#f9e589"/><stop offset="100%" stop-color="#f6d751"/></linearGradient><path id="SVGvAvgNc4T" d="M142.222 14.222C142.222 6.368 148.59 0 156.444 0h85.334C249.632 0 256 6.368 256 14.222v312.89c0 7.854-6.368 14.221-14.222 14.221H14.222C6.368 341.333 0 334.966 0 327.111V184.89c0-7.855 6.368-14.222 14.222-14.222h56.89V99.556c0-7.855 6.367-14.223 14.222-14.223h56.888z"/></defs><mask id="SVGvCV5wclL" fill="#fff"><use href="#SVGvAvgNc4T"/></mask><path fill="url(#SVGCdghnblF)" d="M256 0v341.333H142.222V0z" mask="url(#SVGvCV5wclL)"/><path fill-opacity=".2" d="M184.889 100.978v241.778H71.11v-256h99.556c7.854 0 14.222 6.367 14.222 14.222" mask="url(#SVGvCV5wclL)"/><path fill-opacity=".18" d="M184.889 106.667v241.777H71.11v-256h99.556c7.854 0 14.222 6.368 14.222 14.223" mask="url(#SVGvCV5wclL)"/><path fill="url(#SVG5tapKdof)" d="M184.889 99.556v241.777H71.11v-256h99.556c7.854 0 14.222 6.368 14.222 14.223" mask="url(#SVGvCV5wclL)"/><path fill="url(#SVGRvjwscVp)" d="M0 170.667v170.666h113.778V184.89c0-7.855-6.368-14.222-14.222-14.222z" mask="url(#SVGvCV5wclL)"/></svg></div>
           <p class="skill-name">Power BI</p>
         </div>
-        <div class="skill-card" style="--i:6">
+        <div class="skill-card" data-name="MS Excel" aria-label="MS Excel" style="--i:6">
           <div class="skill-icon"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="SVGSuUii0pt" x1="4.494" x2="13.832" y1="-2092.086" y2="-2075.914" gradientTransform="translate(0 2100)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#18884f"/><stop offset=".5" stop-color="#117e43"/><stop offset="1" stop-color="#0b6631"/></linearGradient></defs><path fill="#185c37" d="M19.581 15.35L8.512 13.4v14.409A1.19 1.19 0 0 0 9.705 29h19.1A1.19 1.19 0 0 0 30 27.809V22.5Z"/><path fill="#21a366" d="M19.581 3H9.705a1.19 1.19 0 0 0-1.193 1.191V9.5L19.581 16l5.861 1.95L30 16V9.5Z"/><path fill="#107c41" d="M8.512 9.5h11.069V16H8.512Z"/><path d="M16.434 8.2H8.512v16.25h7.922a1.2 1.2 0 0 0 1.194-1.191V9.391A1.2 1.2 0 0 0 16.434 8.2" opacity=".1"/><path d="M15.783 8.85H8.512V25.1h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity=".2"/><path d="M15.783 8.85H8.512V23.8h7.271a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity=".2"/><path d="M15.132 8.85h-6.62V23.8h6.62a1.2 1.2 0 0 0 1.194-1.191V10.041a1.2 1.2 0 0 0-1.194-1.191" opacity=".2"/><path fill="url(#SVGSuUii0pt)" d="M3.194 8.85h11.938a1.193 1.193 0 0 1 1.194 1.191v11.918a1.193 1.193 0 0 1-1.194 1.191H3.194A1.19 1.19 0 0 1 2 21.959V10.041A1.19 1.19 0 0 1 3.194 8.85"/><path fill="#fff" d="m5.7 19.873l2.511-3.884l-2.3-3.862h1.847L9.013 14.6c.116.234.2.408.238.524h.017q.123-.281.26-.546l1.342-2.447h1.7l-2.359 3.84l2.419 3.905h-1.809l-1.45-2.711A2.4 2.4 0 0 1 9.2 16.8h-.024a1.7 1.7 0 0 1-.168.351l-1.493 2.722Z"/><path fill="#33c481" d="M28.806 3h-9.225v6.5H30V4.191A1.19 1.19 0 0 0 28.806 3"/><path fill="#107c41" d="M19.581 16H30v6.5H19.581Z"/></svg></div>
           <p class="skill-name">MS Excel</p>
         </div>
-        <div class="skill-card" style="--i:7">
+        <div class="skill-card" data-name="JavaScript" aria-label="JavaScript" style="--i:7">
           <div class="skill-icon"><svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#f7df1e" d="M0 0h256v256H0z"/><path d="m67.312 213.932l19.59-11.856c3.78 6.701 7.218 12.371 15.465 12.371c7.905 0 12.89-3.092 12.89-15.12v-81.798h24.057v82.138c0 24.917-14.606 36.259-35.916 36.259c-19.245 0-30.416-9.967-36.087-21.996m85.07-2.576l19.588-11.341c5.157 8.421 11.859 14.607 23.715 14.607c9.969 0 16.325-4.984 16.325-11.858c0-8.248-6.53-11.17-17.528-15.98l-6.013-2.58c-17.357-7.387-28.87-16.667-28.87-36.257c0-18.044 13.747-31.792 35.228-31.792c15.294 0 26.292 5.328 34.196 19.247l-18.732 12.03c-4.125-7.389-8.591-10.31-15.465-10.31c-7.046 0-11.514 4.468-11.514 10.31c0 7.217 4.468 10.14 14.778 14.608l6.014 2.577c20.45 8.765 31.963 17.7 31.963 37.804c0 21.654-17.012 33.51-39.867 33.51c-22.339 0-36.774-10.654-43.819-24.574"/></svg></div>
           <p class="skill-name">JavaScript</p>
         </div>
-        <div class="skill-card" style="--i:8">
+        <div class="skill-card" data-name="C++" aria-label="C++" style="--i:8">
           <div class="skill-icon"><svg viewBox="0 0 256 288" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#649ad2" d="M255.987 84.59c-.002-4.837-1.037-9.112-3.13-12.781c-2.054-3.608-5.133-6.632-9.261-9.023c-34.08-19.651-68.195-39.242-102.264-58.913c-9.185-5.303-18.09-5.11-27.208.27c-13.565 8-81.48 46.91-101.719 58.632C4.071 67.6.015 74.984.013 84.58C0 124.101.013 163.62 0 203.141c0 4.73.993 8.923 2.993 12.537c2.056 3.717 5.177 6.824 9.401 9.269c20.24 11.722 88.164 50.63 101.726 58.631c9.121 5.382 18.027 5.575 27.215.27c34.07-19.672 68.186-39.262 102.272-58.913c4.224-2.444 7.345-5.553 9.401-9.267c1.997-3.614 2.992-7.806 2.992-12.539c0 0 0-79.018-.013-118.539"/><path fill="#004482" d="m128.392 143.476l-125.4 72.202c2.057 3.717 5.178 6.824 9.402 9.269c20.24 11.722 88.164 50.63 101.726 58.631c9.121 5.382 18.027 5.575 27.215.27c34.07-19.672 68.186-39.262 102.272-58.913c4.224-2.444 7.345-5.553 9.401-9.267z"/><path fill="#1a4674" d="M91.25 164.863c7.297 12.738 21.014 21.33 36.75 21.33c15.833 0 29.628-8.7 36.888-21.576l-36.496-21.141z"/><path fill="#01589c" d="M255.987 84.59c-.002-4.837-1.037-9.112-3.13-12.781l-124.465 71.667l124.616 72.192c1.997-3.614 2.99-7.806 2.992-12.539c0 0 0-79.018-.013-118.539"/><path fill="#fff" d="M249.135 148.636h-9.738v9.74h-9.74v-9.74h-9.737V138.9h9.737v-9.738h9.74v9.738h9.738zM128 58.847c31.135 0 58.358 16.74 73.17 41.709l.444.759l-37.001 21.307c-7.333-12.609-20.978-21.094-36.613-21.094c-23.38 0-42.333 18.953-42.333 42.332a42.13 42.13 0 0 0 5.583 21.003c7.297 12.738 21.014 21.33 36.75 21.33c15.659 0 29.325-8.51 36.647-21.153l.241-.423l36.947 21.406c-14.65 25.597-42.228 42.851-73.835 42.851c-31.549 0-59.084-17.185-73.754-42.707c-7.162-12.459-11.26-26.904-11.26-42.307c0-46.95 38.061-85.013 85.014-85.013m75.865 70.314v9.738h9.737v9.737h-9.737v9.74h-9.738v-9.74h-9.738V138.9h9.738v-9.738z"/></svg></div>
           <p class="skill-name">C++</p>
         </div>
@@ -1679,16 +1681,6 @@
       init();
       startAutoplay();
     })();
-  </script>
-  <script>
-    // ── Skills spotlight follows the cursor ──
-    document.querySelectorAll('.skill-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
   </script>
 </body>
 </html>
